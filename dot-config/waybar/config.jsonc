@@ -1,0 +1,124 @@
+{
+  "reload-style-on-change": true,
+  "position": "bottom",
+  "spacing": 0,
+  "modules-left": ["hyprland/workspaces", "hyprland/submap", "hyprland/window"],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "network",
+    "cpu",
+    "memory",
+    "disk",
+    "pulseaudio",
+    "backlight",
+    "battery",
+    "hyprland/language",
+    "tray",
+  ],
+  "hyprland/workspaces": {
+    "persistent-workspaces": {
+      "*": 5,
+    },
+    "show-special": true,
+    "format": "<big>{icon}</big>",
+    "format-icons": {
+      "default": "",
+      "empty": "",
+    },
+  },
+  "hyprland/window": {
+    "icon": true,
+    "icon-size": 24,
+  },
+  "hyprland/language": {
+    "format": "{}  ",
+    "format-en": "EN",
+    "format-ka": "GE",
+  },
+  "tray": {
+    "icon-size": 20,
+    "spacing": 10,
+  },
+  "clock": {
+    "format": "{:%I:%M    %b %e }",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
+      },
+    },
+    "actions": {
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down",
+    },
+  },
+  "cpu": {
+    "format": "{usage} ",
+    "states": {
+      "high": 60,
+      "max": 90,
+    },
+  },
+  "memory": {
+    "interval": 10,
+    "format": "{} ",
+    "states": {
+      "high": 60,
+      "max": 90,
+    },
+  },
+  "disk": {
+    "format": "{percentage_used} <span size='110%'>󰋊</span>",
+  },
+  "backlight": {
+    "format": "{percent} {icon}",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+  },
+  "battery": {
+    "interval": 10,
+    "states": {
+      "full": 100,
+      "normal": 99,
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "{capacity} {icon}",
+    "format-charging": "{capacity} 󰉁",
+    "format-plugged": "{capacity} ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+  },
+  "network": {
+    "format-wifi": "{essid} ({signalStrength}) {icon}",
+    "format-ethernet": "{ipaddr}/{cidr} 󰈀",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected 󰤭",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+  },
+  "pulseaudio": {
+    "format": "{volume} {icon}",
+    "format-bluetooth": "{volume} {icon}",
+    "format-bluetooth-muted": " {icon}",
+    "format-muted": "<big>󰝟</big>",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""],
+    },
+    "on-click": "pavucontrol",
+  },
+}

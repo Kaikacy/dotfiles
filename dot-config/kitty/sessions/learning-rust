@@ -1,0 +1,11 @@
+cd ~/Code/rust/learning-testing/rustlings/
+
+launch rustlings
+
+launch --location=hsplit nvim exercises
+
+new_tab
+
+cd ~/Code/rust/learning-testing/
+
+launch nvim .

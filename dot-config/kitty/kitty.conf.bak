@@ -1,0 +1,65 @@
+font_family      family='JetBrainsMono Nerd Font' postscript_name=JetBrainsMonoNF-Light
+bold_font        family='JetBrainsMono Nerd Font' style=Medium
+italic_font      family='JetBrainsMono Nerd Font' postscript_name=JetBrainsMonoNF-LightItalic
+bold_italic_font family='JetBrainsMono Nerd Font' style='Medium Italic'
+
+font_size 14
+
+disable_ligatures cursor
+
+wheel_scroll_multiplier 3.0
+
+url_style straight
+
+enabled_layouts tall,*
+
+window_border_width 2px
+draw_minimal_borders yes
+
+placement_strategy center
+
+inactive_text_alpha 0.7
+
+tab_bar_edge top
+tab_bar_style separator
+
+# most basic option ( no decoration )
+tab_separator ""
+tab_title_template "  {fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}  ({layout_name.upper()[:2]}. {num_windows})  "
+
+# notify if command lasted >10s and is not visible
+notify_on_cmd_finish invisible 10.0
+
+window_alert_on_bell no
+## KEYMAPS ##
+# kitty_mod is CTRL+SHIFT
+#
+map ctrl+c copy_and_clear_or_interrupt
+
+# show scrollback in less
+map kitty_mod+j show_scrollback
+# new pane 
+map kitty_mod+enter new_window_with_cwd
+
+map kitty_mod+l next_window
+map kitty_mod+h previous_window
+
+map kitty_mod+] next_tab
+map kitty_mod+[ previous_tab
+map kitty_mod+k next_layout
+# stack layout zooms into focused pane
+map kitty_mod+m toggle_layout stack
+
+# keychord
+map kitty_mod+a>k set_background_opacity +0.05
+map kitty_mod+a>j set_background_opacity -0.05
+map kitty_mod+a>0 set_background_opacity default
+
+map kitty_mod+d launch '~/.config/kitty/fzf-session-selector.sh'
+
+
+# BEGIN_KITTY_THEME
+# Tomorrow-Night-Custom
+include current-theme.conf
+# END_KITTY_THEME
+

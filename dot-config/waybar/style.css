@@ -1,0 +1,149 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: FontAwesome, Adwita Mono, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+window#waybar {
+    background-color: #030405;
+    color: whitesmoke;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    border-radius: 0;
+    background-color: transparent;
+    color: whitesmoke;
+}
+
+#workspaces button.urgent {
+    background-color: crimson;
+}
+
+#workspaces button.active {
+    background-color: #0f1011;
+    color: gold;
+}
+
+#workspaces button.special {
+    background-color: #0f1011;
+    color: violet;
+}
+
+#submap {
+    padding: 0 4px;
+    font-weight: 600;
+}
+
+#submap.launch {
+    color: tomato;
+}
+
+#submap.screen {
+    color: dodgerblue;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#backlight,
+#network,
+#pulseaudio,
+#language,
+#tray {
+    padding: 0 10px;
+    margin: 0 1px;
+    color: whitesmoke;
+}
+
+#clock {
+    box-shadow: inset 0 -2px tomato;
+}
+
+#battery.normal {
+    box-shadow: inset 0 -2px dodgerblue;
+}
+
+#battery.full {
+    box-shadow: inset 0 -2px limegreen;
+}
+
+#battery.warning {
+    box-shadow: inset 0 -2px gold;
+}
+
+#battery.critical {
+    box-shadow: inset 0 -2px tomato;
+}
+
+#language {
+    box-shadow: inset 0 -2px mediumaquamarine;
+    margin-left: 10px;
+}
+
+#pulseaudio {
+    box-shadow: inset 0 -2px hotpink;
+}
+
+#pulseaudio.muted {
+    box-shadow: inset 0 -2px grey;
+    color: grey;
+}
+
+#cpu {
+    box-shadow: inset 0 -2px limegreen;
+}
+
+#memory {
+    box-shadow: inset 0 -2px dodgerblue;
+}
+
+#disk {
+    box-shadow: inset 0 -2px orange;
+    margin-right: 10px;
+}
+
+#backlight {
+    box-shadow: inset 0 -2px gold;
+}
+
+#network {
+    box-shadow: inset 0 -2px mediumpurple;
+    margin-right: 10px;
+}
+
+#network.disconnected {
+    box-shadow: inset 0 -2px grey;
+    color: grey;
+}
+
+
+#tray {
+    box-shadow: inset 0 -2px whitesmoke;
+}
+
+#window,
+#workspaces {
+    margin: 0 10px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left>widget:first-child>#workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right>widget:last-child>#workspaces {
+    margin-right: 0;
+}
+
+#tray>.passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray>.needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: firebrick;
+}

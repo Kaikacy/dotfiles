@@ -1,0 +1,33 @@
+# author Kaikaci
+
+[colors.primary]
+background = '#0c0d11'
+foreground = '#f6f5f5'
+
+[colors.cursor]
+text = 'CellBackground'
+cursor = 'CellForeground'
+
+[colors.selection]
+text = '#0c0d11'
+background = '#96d1d7'
+
+[colors.normal]
+black = '#171a25'
+red = '#de3354'
+green = '#2ed563'
+yellow = '#f0be42'
+blue = '#4063bb'
+magenta = '#d758b0'
+cyan = '#57b6ac'
+white = '#c7c1c1'
+
+[colors.bright]
+black = '#454864'
+red = '#ff446f'
+green = '#44f656'
+yellow = '#f5e44e'
+blue = '#5e76fc'
+magenta = '#ff73e4'
+cyan = '#75d1e2'
+white = '#f6f5f5'
