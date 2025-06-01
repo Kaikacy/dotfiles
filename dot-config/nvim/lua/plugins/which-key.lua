@@ -15,7 +15,7 @@ return {
 		delay = 500,
 		spec = {
 			{ "<leader>f", group = "Find" },
-			{ "<leader>l", group = "Language" },
+			{ "<leader>l", group = "LSP" },
 			{ "<leader>S", group = "Session" },
 			{ "<leader>s", group = "Search/Replace" },
 			{ "<leader>b", group = "Buffer" },

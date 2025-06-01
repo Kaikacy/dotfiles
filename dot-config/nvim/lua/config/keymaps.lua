@@ -9,8 +9,6 @@ local map = function(mode, lhs, rhs, desc, opts)
 	vim.keymap.set(mode, lhs, rhs, opts)
 end
 
-map({ "n", "x" }, ";", ":", "; instead of :")
-
 -- multicursor edits in block mode doesn't get applied when C-c
 map({ "i", "v", "o" }, "<C-c>", "<esc>")
 

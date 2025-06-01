@@ -14,19 +14,12 @@ return {
 			local c = require("kanagawa.colors").setup()
 			return {
 				bg = c.theme.ui.bg_dim,
-				bg_active = c.theme.ui.bg,
-				bg_winbar = c.theme.ui.bg,
 				fg = c.theme.ui.fg,
 				fg_dark = c.palette.sumiInk6,
-				fg_darker = c.palette.sumiInk5,
-				fg_winbar = c.palette.lotusWhite3,
-				fg_winbar_dark = c.palette.sumiInk5,
 				work_dir = c.theme.ui.nontext,
 				scrollbar = c.palette.autumnYellow,
 				treesitter = c.palette.springGreen,
 				lsp = c.theme.ui.fg,
-				readonly = c.palette.autumnRed,
-				modified = c.palette.waveAqua1,
 				macro_rec = c.palette.surimiOrange,
 				mode_normal = c.palette.crystalBlue,
 				mode_insert = c.palette.springGreen,
@@ -49,19 +42,12 @@ return {
 			local c = require("moonfly").palette
 			return {
 				bg = c.grey7,
-				bg_active = c.grey15,
-				bg_winbar = c.grey15,
 				fg = c.white,
 				fg_dark = c.grey58,
-				fg_darker = c.grey27,
-				fg_winbar = c.grey58,
-				fg_winbar_dark = c.grey39,
 				work_dir = c.grey58,
 				scrollbar = c.yellow,
 				treesitter = c.green,
 				lsp = c.white,
-				modified = c.emerald,
-				readonly = c.red,
 				macro_rec = c.orange,
 				git_branch = c.purple,
 				git_add = c.green,
@@ -84,19 +70,12 @@ return {
 			local c = require("astrotheme.palettes.astrodark")
 			return {
 				bg = c.ui.statusline,
-				bg_active = c.ui.highlight,
-				bg_winbar = c.ui.highlight,
 				fg = c.ui.text_match,
 				fg_dark = c.ui.text,
-				fg_darker = c.ui.text_inactive,
-				fg_winbar = c.ui.winbar,
-				fg_winbar_dark = c.ui.text_inactive,
 				work_dir = c.ui.none_text,
 				scrollbar = c.ui.yellow,
 				treesitter = c.ui.green,
 				lsp = c.ui.text,
-				modified = c.syntax.cyan,
-				readonly = c.ui.red,
 				macro_rec = c.ui.orange,
 				git_branch = c.ui.purple,
 				git_add = c.syntax.green,
@@ -120,19 +99,12 @@ return {
 			local c = require("github-theme.palette.github_dark_default").generate_spec(palette)
 			return {
 				bg = c.bg0,
-				bg_active = c.bg2,
-				bg_winbar = c.bg2,
 				fg = c.fg1,
 				fg_dark = c.fg2,
-				fg_darker = c.bg3,
-				fg_winbar = c.fg2,
-				fg_winbar_dark = c.fg3,
 				work_dir = c.fg2,
 				scrollbar = palette.yellow.base,
 				treesitter = palette.green.base,
 				lsp = c.fg1,
-				modified = palette.cyan.base,
-				readonly = palette.red.base,
 				macro_rec = palette.orange,
 				git_branch = palette.pink.base,
 				git_add = c.git.add,
@@ -155,19 +127,12 @@ return {
 			local c = require("eldritch.colors").darker
 			return {
 				bg = c.bg_dark,
-				bg_active = c.bg_highlight,
-				bg_winbar = c.bg_highlight,
 				fg = c.fg,
 				fg_dark = c.fg_dark,
-				fg_darker = c.fg_gutter_light,
-				fg_winbar = c.fg_gutter_light,
-				fg_winbar_dark = c.fg_gutter,
 				work_dir = c.fg_dark,
 				scrollbar = c.yellow,
 				treesitter = c.green,
 				lsp = c.fg,
-				modified = c.cyan,
-				readonly = c.red,
 				macro_rec = c.orange,
 				git_branch = c.purple,
 				git_add = c.git.add,
@@ -190,19 +155,12 @@ return {
 			local c = require("nordic.colors")
 			return {
 				bg = c.bg_statusline,
-				bg_active = c.gray0,
-				bg_winbar = c.gray0,
 				fg = c.fg,
 				fg_dark = c.gray5,
-				fg_darker = c.fg_sidebar,
-				fg_winbar = c.gray5,
-				fg_winbar_dark = c.fg_sidebar,
 				work_dir = c.gray5,
 				scrollbar = c.yellow.base,
 				treesitter = c.green.base,
 				lsp = c.fg,
-				modified = c.cyan.dim,
-				readonly = c.red.base,
 				macro_rec = c.orange.base,
 				git_branch = c.magenta.base,
 				git_add = c.git.add,
@@ -225,19 +183,12 @@ return {
 			local c = require("oh-lucy.colors")
 			return {
 				bg = c.black,
-				bg_active = c.gray,
-				bg_winbar = c.gray,
 				fg = c.fg,
 				fg_dark = c.line_fg,
-				fg_darker = c.gray1,
-				fg_winbar = c.line_fg,
-				fg_winbar_dark = c.gray1,
 				work_dir = c.selection_bg,
 				scrollbar = c.yellow,
 				treesitter = c.green,
 				lsp = c.fg,
-				modified = c.blue_type,
-				readonly = c.red_err,
 				macro_rec = c.orange,
 				git_branch = c.boolean,
 				git_add = c.diff_add,
@@ -260,19 +211,12 @@ return {
 			local c = require("tokyonight.colors").setup()
 			return {
 				bg = c.bg_statusline,
-				bg_active = c.bg_highlight,
-				bg_winbar = c.bg_highlight,
 				fg = c.fg,
 				fg_dark = c.dark5,
-				fg_darker = c.fg_gutter,
-				fg_winbar = c.fg_dark,
-				fg_winbar_dark = c.dark5,
 				work_dir = c.dark5,
 				scrollbar = c.yellow,
 				treesitter = c.green,
 				lsp = c.fg_dark,
-				modified = c.blue2,
-				readonly = c.red,
 				macro_rec = c.orange,
 				git_branch = c.purple,
 				git_add = c.git.add,
@@ -319,19 +263,6 @@ return {
 		end
 		local _Align = { provider = "%=" }
 
-		--- like nvim_list_bufs, but excludes
-		--- some buffers based on buftype, filetype ...
-		---@return integer[]
-		local function real_bufs()
-			return vim.tbl_filter(function(bufnr)
-				return vim.api.nvim_get_option_value("buflisted", { buf = bufnr })
-					and not conditions.buffer_matches({
-						buftype = { "nofile", "quickfix" },
-						filetype = { "oil" },
-					}, bufnr)
-			end, vim.api.nvim_list_bufs())
-		end
-
 		local ViMode = {
 			init = function(self)
 				self.mode = vim.fn.mode()
@@ -375,12 +306,6 @@ return {
 			end,
 		}
 
-		local FileName = {
-			provider = function(self)
-				return self.filename == "" and "[No Name]" or vim.fn.fnamemodify(self.filename, ":t")
-			end,
-		}
-
 		local FileIcon = {
 			init = function(self)
 				if vim.api.nvim_get_option_value("buftype", { buf = self.bufnr }) == "terminal" then
@@ -418,14 +343,6 @@ return {
 		}
 
 		FileTypeBlock = utils.insert(FileTypeBlock, FileIcon, FileType)
-
-		local FileNameBlock = {
-			init = function(self)
-				self.filename = vim.api.nvim_buf_get_name(0)
-			end,
-			FileIcon,
-			FileName,
-		}
 
 		local TerminalName = {
 			provider = function()
@@ -568,21 +485,21 @@ return {
 			{
 				provider = function(self)
 					local count = self.status_dict.added or 0
-					return count > 0 and ("󰜄 " .. count .. " ")
+					return count > 0 and ("+" .. count .. " ")
 				end,
 				hl = { fg = "git_add" },
 			},
 			{
 				provider = function(self)
 					local count = self.status_dict.removed or 0
-					return count > 0 and ("󰛲 " .. count .. " ")
+					return count > 0 and ("-" .. count .. " ")
 				end,
 				hl = { fg = "git_remove" },
 			},
 			{
 				provider = function(self)
 					local count = self.status_dict.changed or 0
-					return count > 0 and (" " .. count)
+					return count > 0 and ("~" .. count)
 				end,
 				hl = { fg = "git_change" },
 			},
@@ -688,244 +605,8 @@ return {
 			DefaultStatusLine,
 		}
 
-		local TablineFileNameModifier = {
-			hl = function(self)
-				local hl = {}
-				if not vim.api.nvim_buf_is_loaded(self.bufnr) then
-					hl = { fg = "fg_darker" }
-				elseif vim.api.nvim_get_option_value("modified", { buf = self.bufnr }) then
-					hl = { fg = "modified" }
-				elseif
-					not vim.api.nvim_get_option_value("modifiable", { buf = self.bufnr })
-					or vim.api.nvim_get_option_value("readonly", { buf = self.bufnr })
-				then
-					hl = { fg = "readonly" }
-				end
-				hl.bold = self.is_active or self.is_visible
-				hl.italic = hl.bold
-				hl.force = true
-				return hl
-			end,
-		}
-
-		local TablinePicker = {
-			condition = function(self)
-				return self._show_picker
-			end,
-			init = function(self)
-				local bufname = vim.api.nvim_buf_get_name(self.bufnr)
-				bufname = vim.fn.fnamemodify(bufname, ":t")
-				local label = bufname:sub(1, 1)
-				local i = 2
-				while self._picker_labels[label] do
-					if i > #bufname then
-						break
-					end
-					label = bufname:sub(i, i)
-					i = i + 1
-				end
-				self._picker_labels[label] = self.bufnr
-				self.label = label
-			end,
-			provider = function(self)
-				return self.label .. " "
-			end,
-			hl = { fg = "readonly", bold = true },
-		}
-
-		local TablineSmartPath = {
-			condition = function(self)
-				local name = vim.api.nvim_buf_get_name(self.bufnr)
-				self.basename = vim.fs.basename(name)
-				self.dirs = vim.split(vim.fs.dirname(name), "/", { trimempty = true })
-				self.paths = {}
-
-				local paths = {}
-				local bufs = real_bufs()
-				for _, buf in ipairs(bufs) do
-					if buf ~= self.bufnr then
-						table.insert(paths, vim.api.nvim_buf_get_name(buf))
-					end
-				end
-				for _, path in ipairs(paths) do
-					if vim.fs.basename(path) == self.basename then
-						table.insert(self.paths, path)
-						return true
-					end
-				end
-			end,
-			init = function(self)
-				self.path = ""
-				for _, path in ipairs(self.paths) do
-					local other_dirs = vim.split(vim.fs.dirname(path), "/", { trimempty = true })
-					local k = 0
-					while other_dirs[#other_dirs - k] == self.dirs[#self.dirs - k] do
-						k = k + 1
-					end
-					self.path = table.concat(self.dirs, "/", #self.dirs - k)
-					break
-				end
-			end,
-			provider = function(self)
-				return "" .. self.path .. "/"
-			end,
-			hl = function(self)
-				return { fg = self.is_active and "fg_dark" or "fg_darker" }
-			end,
-		}
-
-		local TablineFileNameBlock = {
-			init = function(self)
-				self.filename = vim.api.nvim_buf_get_name(self.bufnr)
-			end,
-			hl = function(self)
-				if self.is_active then
-					return { fg = "fg" }
-				else
-					return { fg = "fg_dark" }
-				end
-			end,
-			{
-				fallthrough = false,
-				TablinePicker,
-				FileIcon,
-			},
-			TablineSmartPath,
-			utils.insert(TablineFileNameModifier, FileName),
-		}
-
-		TablineBufferBlock = utils.surround({ "██", "██" }, function(self)
-			if self.is_active then
-				return "bg_active"
-			else
-				return "bg"
-			end
-		end, TablineFileNameBlock)
-
-		local BufferLine = utils.make_buflist(
-			TablineBufferBlock,
-			{ provider = " ", hl = { fg = "fg_darker" } },
-			{ provider = " ", hl = { fg = "fg_darker" } },
-			real_bufs
-		)
-
-		local Tabpage = {
-			provider = function(self)
-				return "%" .. self.tabnr .. "T " .. self.tabpage .. " %T"
-			end,
-			hl = function(self)
-				if self.is_active then
-					return { fg = "bg", bg = "fg_dark", bold = true }
-				else
-					return { fg = "fg", bg = "bg" }
-				end
-			end,
-		}
-
-		local TabPages = {
-			condition = function()
-				return #vim.api.nvim_list_tabpages() >= 2
-			end,
-			utils.make_tablist(Tabpage),
-		}
-
-		local TabLine = {
-			hl = { bg = "bg" },
-			BufferLine,
-			_Align,
-			TabPages,
-		}
-
-		local Navic = {
-			condition = function()
-				return require("nvim-navic").is_available()
-			end,
-			provider = function()
-				return require("nvim-navic").get_location()
-			end,
-			update = "CursorMoved",
-		}
-
-		local WinBar = {
-			hl = { bg = "bg_winbar" },
-			{
-				fallthrough = false,
-				{
-					condition = function()
-						return not conditions.is_active()
-					end,
-					init = function(self)
-						self.bufnr = vim.api.nvim_win_get_buf(0)
-						self.filename = vim.api.nvim_buf_get_name(self.bufnr)
-					end,
-					hl = { fg = "fg_winbar", italic = true },
-					_Spacer(2),
-					FileIcon,
-					{ hl = { fg = "fg_winbar_dark", force = true }, TablineSmartPath },
-					FileName,
-				},
-				{
-					_Spacer(2),
-					Navic,
-				},
-			},
-			_Align,
-		}
-
 		heirline.setup({
 			statusline = StatusLine,
-			tabline = TabLine,
-			winbar = WinBar,
-			opts = {
-				disable_winbar_cb = function(args)
-					return conditions.buffer_matches({
-						buftype = { "nofile", "prompt", "help", "quickfix", "terminal" },
-						filetype = { "^git.*", "Trouble", "oil" },
-					}, args.buf)
-				end,
-			},
 		})
-
-		local buffer_picker = function(callback)
-			local tabline = require("heirline").tabline
-			---@diagnostic disable-next-line: undefined-field
-			local buflist = tabline._buflist[1]
-			buflist._picker_labels = {}
-			buflist._show_picker = true
-			vim.cmd.redrawtabline()
-			local char = vim.fn.getcharstr()
-			local bufnr = buflist._picker_labels[char]
-			if bufnr then
-				callback(bufnr)
-			end
-			buflist._show_picker = false
-			vim.cmd.redrawtabline()
-		end
-
-		vim.keymap.set("n", "<leader>bb", function()
-			buffer_picker(function(bufnr)
-				vim.api.nvim_win_set_buf(0, bufnr)
-			end)
-		end, { desc = "Pick buffer" })
-
-		vim.keymap.set("n", "<leader>bx", function()
-			buffer_picker(function(bufnr)
-				vim.api.nvim_buf_delete(bufnr, {})
-			end)
-		end, { desc = "Pick and delete buffer" })
-
-		vim.keymap.set("n", "<leader>b\\", function()
-			buffer_picker(function(bufnr)
-				vim.cmd("split")
-				vim.api.nvim_win_set_buf(0, bufnr)
-			end)
-		end, { desc = "Pick and split buffer" })
-
-		vim.keymap.set("n", "<leader>b|", function()
-			buffer_picker(function(bufnr)
-				vim.cmd("vsplit")
-				vim.api.nvim_win_set_buf(0, bufnr)
-			end)
-		end, { desc = "Pick and vert split buffer" })
 	end,
 }

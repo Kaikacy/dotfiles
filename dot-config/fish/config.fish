@@ -69,9 +69,9 @@ function fish_right_prompt
         if test $cmd_duration -lt 60
             set fmt_duration $cmd_duration s
         else if test $cmd_duration -lt 3600
-            set fmt_duration (date -u -d @$cmd_duration "+%Ss%Mm")
+            set fmt_duration (date -u -d @$cmd_duration "+%Mm%Ss")
         else
-            set fmt_duration (date -u -d @$cmd_duration "+%Ss%Mm%Hh")
+            set fmt_duration (date -u -d @$cmd_duration "+%Hh%Mm%Ss")
         end
         set fmt_duration (set_color --bold brblack) $fmt_duration (set_color normal)
     end

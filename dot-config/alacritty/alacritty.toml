@@ -4,7 +4,7 @@ dynamic_padding = true
 
 [font]
 normal = { family = "JetBrainsMono Nerd Font" }
-size = 9.3
+size = 14
 offset.y = 0
 
 [cursor]
@@ -42,4 +42,4 @@ bindings = [
 ]
 
 [general]
-import = ["~/.config/alacritty/themes/my-themes/kai.toml"]
+import = ["~/.config/alacritty/themes/themes/tomorrow_night_bright.toml"]

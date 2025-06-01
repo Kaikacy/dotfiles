@@ -23,12 +23,8 @@ o.smarttab = true
 
 o.linebreak = true
 
-o.autowrite = true
-
 o.cursorline = true
 o.cursorlineopt = "number"
-
-o.showmode = false
 
 o.undofile = true
 o.swapfile = false
@@ -58,11 +54,8 @@ o.virtualedit = "block"
 o.list = true
 o.listchars = "tab: ,trail:˗,multispace:·,lead: ,nbsp:␣"
 
-o.fillchars = "horiz:━,horizup:┻,horizdown:┳,vert:┃,vertleft:┫,vertright:┣,verthoriz:╋,eob: "
-
 o.conceallevel = 2
 
 o.colorcolumn = "100"
 
-o.showtabline = 2
 o.laststatus = 3

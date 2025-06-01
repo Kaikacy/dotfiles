@@ -1,5 +1,5 @@
 [global]
-enable_posix_regex = true
+    enable_posix_regex = true
     ### Geometry ###
     width = (250, 350)
     height = (0, 300)
@@ -180,3 +180,4 @@ enable_posix_regex = true
     override_pause_level = 60
     default_icon = dialog-warning
 
+# vim: ft=cfg

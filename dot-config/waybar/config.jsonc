@@ -20,6 +20,7 @@
       "*": 5,
     },
     "show-special": true,
+    "special-visible-only": true,
     "format": "<big>{icon}</big>",
     "format-icons": {
       "default": "",
@@ -34,6 +35,7 @@
     "format": "{}  ",
     "format-en": "EN",
     "format-ka": "GE",
+    "on-click": "hyprctl switchxkblayout a4tech-usb-device-keyboard next",
   },
   "tray": {
     "icon-size": 20,

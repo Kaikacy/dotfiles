@@ -1,5 +1,5 @@
 return {
-	{ -- Highlight, edit, and navigate code
+	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		event = { "BufReadPre", "BufNewFile" },
@@ -24,6 +24,12 @@ return {
 		},
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
+			{
+				"nvim-treesitter/nvim-treesitter-context",
+				opts = {
+					enable = true,
+				},
+			},
 		},
 		config = function()
 			---@diagnostic disable-next-line: missing-fields
@@ -138,10 +144,6 @@ return {
 						},
 					},
 				},
-			})
-
-			vim.filetype.add({
-				pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
 			})
 		end,
 	},

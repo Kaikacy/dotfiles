@@ -6,9 +6,9 @@ font-style-bold = "Bold"
 font-style-italic = "Medium Oblique"
 font-style-bold-italic = "Bold Oblique"
 font-size = 15
-adjust-cell-height = -4
+adjust-cell-height = -3
 adjust-cursor-thickness = 1
-adjust-cursor-height = -4
+adjust-cursor-height = -3
 
 theme = "iTerm2 Tango Dark"
 mouse-hide-while-typing = true
@@ -65,3 +65,5 @@ keybind = ctrl+alt+comma=jump_to_prompt:-1
 keybind = ctrl+alt+period=jump_to_prompt:1
 keybind = ctrl+shift+comma=open_config
 keybind = ctrl+shift+period=reload_config
+
+# vim: ft=toml

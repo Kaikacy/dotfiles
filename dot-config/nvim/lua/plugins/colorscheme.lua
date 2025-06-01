@@ -120,11 +120,4 @@ return {
 		priority = 1000,
 		opts = {},
 	},
-	{
-		-- my fork that fixes colors_name not being set
-		dir = "~/Code/other/oh-lucy.nvim",
-		enabled = false,
-		lazy = false,
-		priority = 1000,
-	},
 }

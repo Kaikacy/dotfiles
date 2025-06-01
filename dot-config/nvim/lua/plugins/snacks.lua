@@ -68,7 +68,7 @@ return {
 			-- style = "minimal",
 		},
 		quickfile = { enabled = true },
-		statuscolumn = { enabled = true },
+		statuscolumn = { enabled = false }, -- weird unpredictable bug,
 		words = {
 			enabled = true,
 			debounce = 180,
