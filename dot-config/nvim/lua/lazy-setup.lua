@@ -21,7 +21,7 @@ require("lazy").setup({
 		{ import = "plugins" },
 		{ import = "plugins.lsp" },
 	},
-	install = { colorscheme = { "habamax" } },
+	install = { colorscheme = { "wildcharm" } },
 	change_detection = { notify = false },
 	checker = {
 		enabled = true,

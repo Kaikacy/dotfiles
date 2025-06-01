@@ -258,8 +258,7 @@ return {
 		})
 
 		local function _Spacer(n)
-			n = n or 3
-			return { provider = string.rep(" ", n) }
+			return { provider = string.rep(" ", n or 3) }
 		end
 		local _Align = { provider = "%=" }
 
@@ -300,38 +299,10 @@ return {
 			},
 		}
 
-		local FileTypeBlock = {
+		local FileType = {
 			init = function(self)
 				self.filename = vim.api.nvim_buf_get_name(0)
 			end,
-		}
-
-		local FileIcon = {
-			init = function(self)
-				if vim.api.nvim_get_option_value("buftype", { buf = self.bufnr }) == "terminal" then
-					self.icon = ""
-					self.icon_color = "mode_terminal"
-				else
-					self.icon, self.icon_color = require("nvim-web-devicons").get_icon_color_by_filetype(
-						vim.api.nvim_get_option_value("filetype", { buf = self.bufnr }),
-						{ default = true }
-					)
-				end
-			end,
-			provider = function(self)
-				-- this is needed, cause terminal filetype is ""
-				if vim.api.nvim_get_option_value("buftype", { buf = self.bufnr }) == "terminal" then
-					return self.icon .. " "
-				end
-				return vim.api.nvim_get_option_value("filetype", { buf = self.bufnr }) == "" and ""
-					or self.icon and (self.icon .. " ")
-			end,
-			hl = function(self)
-				return { fg = self.icon_color }
-			end,
-		}
-
-		local FileType = {
 			provider = function()
 				return vim.bo.filetype
 			end,
@@ -341,8 +312,6 @@ return {
 				return { fg = color, bold = true }
 			end,
 		}
-
-		FileTypeBlock = utils.insert(FileTypeBlock, FileIcon, FileType)
 
 		local TerminalName = {
 			provider = function()
@@ -357,12 +326,49 @@ return {
 				local icon = vim.fn.haslocaldir(0) == 1 and " " or " "
 				local cwd = vim.fn.getcwd(0)
 				cwd = vim.fn.fnamemodify(cwd, ":~")
-				if not conditions.width_percent_below(#cwd, 0.25) then
+				if not conditions.width_percent_below(#cwd, 0.30) then
 					cwd = vim.fn.pathshorten(cwd)
 				end
 				return icon .. cwd
 			end,
 			hl = { fg = "work_dir" },
+		}
+
+		local FileName = {
+			provider = function()
+				local filename = vim.api.nvim_buf_get_name(0)
+				if vim.bo.filetype == "help" then
+					filename = vim.fn.fnamemodify(filename, ":t")
+				else
+					filename = filename ~= "" and vim.fn.fnamemodify(filename, ":~:.") or "[No Name]"
+					if not conditions.width_percent_below(#filename, 0.40) then
+						filename = vim.fn.pathshorten(filename)
+					end
+				end
+				return filename .. " %m%r"
+			end,
+			hl = { fg = "fg" },
+		}
+
+		local FileIcon = {
+			init = function(self)
+				self.icon, self.icon_color = require("nvim-web-devicons").get_icon_color_by_filetype(
+					vim.api.nvim_get_option_value("filetype", { buf = self.bufnr }),
+					{ default = true }
+				)
+			end,
+			provider = function(self)
+				return vim.api.nvim_get_option_value("filetype", { buf = self.bufnr }) == "" and " "
+					or self.icon and (self.icon .. " ")
+			end,
+			hl = function(self)
+				return { fg = self.icon_color }
+			end,
+		}
+
+		local FileNameBlock = {
+			FileIcon,
+			FileName,
 		}
 
 		local Ruler = {
@@ -549,13 +555,15 @@ return {
 			hl = { bg = "bg" },
 			ViMode,
 			_Spacer(),
-			FileTypeBlock,
+			FileType,
 			_Spacer(),
 			Git,
 			{ condition = conditions.is_git_repo, _Spacer(2) },
 			Diagnostics,
 			{ condition = conditions.has_diagnostics, _Spacer() },
 			WorkDir,
+			_Spacer(2),
+			FileNameBlock,
 			_Align,
 			MacroRec,
 			_Align,

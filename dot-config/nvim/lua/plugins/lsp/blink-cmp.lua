@@ -16,6 +16,15 @@ return {
 			["<C-e>"] = { "hide", "fallback" },
 			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
 		},
+		cmdline = {
+			keymap = {
+				["<C-f>"] = { "select_and_accept", "fallback" },
+				["<C-j>"] = { "select_next", "fallback" },
+				["<C-k>"] = { "select_prev", "fallback" },
+				["<C-space>"] = { "show" },
+			},
+			completion = { menu = { auto_show = true } },
+		},
 
 		appearance = {
 			use_nvim_cmp_as_default = true,
