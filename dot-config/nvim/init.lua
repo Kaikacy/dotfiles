@@ -3,6 +3,7 @@ require("config.keymaps")
 require("config.autocmds")
 
 require("other.terminal")
+require("other.buffers")
 
 require("lazy-setup")
 

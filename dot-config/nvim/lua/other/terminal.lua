@@ -28,28 +28,25 @@ local function new_terminal(type, opts)
 	}
 
 	return function()
-		local editor_width = vim.o.columns
-		local editor_height = vim.o.lines
-
 		local config = {}
 
 		if type == "vertical" then
-			local width = math.floor(editor_width * (opts.width or defaults[type].width))
+			local width = math.floor(vim.o.columns * (opts.width or defaults[type].width))
 			config = {
 				width = width,
 				vertical = true,
 			}
 		elseif type == "horizontal" then
-			local height = math.floor(editor_height * (opts.height or defaults[type].height))
+			local height = math.floor(vim.o.columns * (opts.height or defaults[type].height))
 			config = {
 				height = height,
 				vertical = false,
 			}
 		else
-			local width = math.floor(editor_width * (opts.width or defaults[type].width))
-			local height = math.floor(editor_height * (opts.height or defaults[type].height))
-			local col = math.floor((editor_width - width) * 0.5)
-			local row = math.floor((editor_height - height) * 0.5)
+			local width = math.floor(vim.o.columns * (opts.width or defaults[type].width))
+			local height = math.floor(vim.o.lines * (opts.height or defaults[type].height))
+			local col = math.floor((vim.o.columns - width) * 0.5)
+			local row = math.floor((vim.o.lines - height) * 0.5)
 
 			config = {
 				relative = "editor",

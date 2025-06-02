@@ -54,9 +54,6 @@ map("n", "<C-S-l>", "<cmd>vert resize +2<cr>", "Resize right")
 map("n", "|", "<cmd>split<cr>", "Split below")
 map("n", "\\", "<cmd>vsplit<cr>", "Split right")
 
-map("n", "<Tab>", "<cmd>bnext<cr>", "Next buffer")
-map("n", "<S-Tab>", "<cmd>bprev<cr>", "Previous buffer")
-
 map("n", "<leader>n", "<cmd>enew<cr>", "New buffer")
 
 map({ "n", "t" }, "<C-;>", "<cmd>TermToggleFloating<cr>", "Toggle floating terminal")
@@ -67,3 +64,5 @@ map("n", "<leader>tn", "<cmd>tabnew<cr>", "Create new tab")
 map("n", "<leader>tc", "<cmd>tabclose<cr>", "Close tab")
 
 map("n", "<leader>L", "<cmd>Lazy<cr>", "Lazy")
+
+map("n", "<Tab>", "<cmd>BuffersToggle<cr>", "Toggle buffers window")

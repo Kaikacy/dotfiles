@@ -60,7 +60,7 @@ return {
 				mode_terminal = c.yellow,
 				mode_replace = c.cranberry,
 				mode_select = c.violet,
-				diagnostic_info = c.lavender,
+				diagnostic_info = c.sky,
 				diagnostic_warning = c.yellow,
 				diagnostic_error = c.red,
 				diagnostic_hint = c.emerald,
