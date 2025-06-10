@@ -11,6 +11,8 @@ o.mouse = ""
 
 o.confirm = true
 
+o.showmode = false
+
 o.breakindent = true
 o.tabstop = 4
 o.shiftwidth = 0

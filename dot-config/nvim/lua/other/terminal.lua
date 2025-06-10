@@ -37,7 +37,7 @@ local function new_terminal(type, opts)
 				vertical = true,
 			}
 		elseif type == "horizontal" then
-			local height = math.floor(vim.o.columns * (opts.height or defaults[type].height))
+			local height = math.floor(vim.o.lines * (opts.height or defaults[type].height))
 			config = {
 				height = height,
 				vertical = false,
@@ -69,12 +69,14 @@ local function new_terminal(type, opts)
 			vim.cmd.startinsert()
 		else
 			vim.api.nvim_win_hide(state.win)
+			return
 		end
 
 		if not vim.api.nvim_buf_is_valid(state.buf) then
 			state.buf = buf
 			vim.fn.jobstart(vim.o.shell, { term = true })
 		end
+		vim.wo[state.win].winhighlight = "NormalFloat:Normal"
 	end
 end
 

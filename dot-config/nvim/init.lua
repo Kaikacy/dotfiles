@@ -3,8 +3,8 @@ require("config.keymaps")
 require("config.autocmds")
 
 require("other.terminal")
-require("other.buffers")
+-- require("other.buffers")
 
 require("lazy-setup")
 
-vim.cmd.colorscheme("moonfly")
+vim.cmd.colorscheme("cyberdream")

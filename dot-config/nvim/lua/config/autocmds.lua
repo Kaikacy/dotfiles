@@ -75,13 +75,3 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePost", "LspAttach" }, {
 	group = group("codelens", {}),
 	callback = vim.lsp.codelens.refresh,
 })
-
--- vim.api.nvim_create_autocmd("ColorScheme", {
--- 	pattern = "moonfly",
--- 	desc = "Custom highlights for moonfly colorscheme",
--- 	group = group("custom-highlight", {}),
--- 	callback = function()
--- 		vim.api.nvim_set_hl(0, "SnacksIndent", { fg = "#262626" })
--- 		vim.api.nvim_set_hl(0, "Comment", { fg = "#626262" })
--- 	end,
--- })

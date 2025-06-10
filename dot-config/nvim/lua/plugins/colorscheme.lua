@@ -120,4 +120,19 @@ return {
 		priority = 1000,
 		opts = {},
 	},
+	{
+		"scottmckendry/cyberdream.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {
+			italic_comments = true,
+			borderless_pickers = true,
+			overrides = function(c)
+				return {
+					Pmenu = { bg = c.bg_alt },
+					NormalFloat = { bg = c.bg_alt },
+				}
+			end,
+		},
+	},
 }

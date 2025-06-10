@@ -100,7 +100,7 @@
   },
   "network": {
     "format-wifi": "{essid} ({signalStrength}) {icon}",
-    "format-ethernet": "{ipaddr}/{cidr} 󰈀",
+    "format-ethernet": "ethernet 󰈀",
     "tooltip-format": "{ifname} via {gwaddr}",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected 󰤭",

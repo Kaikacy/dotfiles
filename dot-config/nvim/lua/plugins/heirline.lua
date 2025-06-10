@@ -235,6 +235,34 @@ return {
 				diagnostic_hint = c.green2,
 			}
 		end
+		local function cyberdream()
+			local c = require("cyberdream.colors").default
+			return {
+				bg = c.bg_alt,
+				fg = c.fg,
+				fg_dark = c.grey,
+				work_dir = c.grey,
+				scrollbar = c.yellow,
+				treesitter = c.green,
+				lsp = c.fg,
+				macro_rec = c.orange,
+				git_branch = c.purple,
+				git_add = c.green,
+				git_remove = c.red,
+				git_change = c.blue,
+				mode_normal = c.blue,
+				mode_insert = c.green,
+				mode_command = c.orange,
+				mode_visual = c.magenta,
+				mode_terminal = c.yellow,
+				mode_replace = c.red,
+				mode_select = c.pink,
+				diagnostic_info = c.blue,
+				diagnostic_warning = c.yellow,
+				diagnostic_error = c.red,
+				diagnostic_hint = c.cyan,
+			}
+		end
 		local colors = {
 			["moonfly"] = moonfly,
 			["kanagawa"] = kanagawa,
@@ -244,6 +272,7 @@ return {
 			["nordic"] = nordic,
 			["oh-lucy"] = oh_lucy,
 			["tokyonight-night"] = tokyonight,
+			["cyberdream"] = cyberdream,
 		}
 		heirline.load_colors(colors[vim.g.colors_name]())
 		vim.api.nvim_create_autocmd("ColorScheme", {

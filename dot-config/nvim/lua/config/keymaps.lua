@@ -38,8 +38,8 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- commenting
-map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", "Add comment below")
-map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", "Add comment above")
+map("n", "gco", "ox<esc><cmd> normal gcc<cr>A<bs>", "Add comment below")
+map("n", "gcO", "Ox<esc><cmd> normal gcc<cr>A<bs>", "Add comment above")
 
 map("n", "<C-j>", "<C-w>j", "Focus down")
 map("n", "<C-k>", "<C-w>k", "Focus up")
@@ -65,4 +65,7 @@ map("n", "<leader>tc", "<cmd>tabclose<cr>", "Close tab")
 
 map("n", "<leader>L", "<cmd>Lazy<cr>", "Lazy")
 
+-- tab and c-i are equivalent for vim compatibility reason
+-- but can be separated like this, :help Tab for more
+map("n", "<C-i>", "<C-i>")
 map("n", "<Tab>", "<cmd>BuffersToggle<cr>", "Toggle buffers window")
