@@ -1,0 +1,6 @@
+[theme]
+prompt_untyped = "darkgray"
+prompt_current_untyped = "darkgray"
+prompt_current_correct = "cyan"
+prompt_correct = "cyan"
+prompt_current_incorrect = "red"
