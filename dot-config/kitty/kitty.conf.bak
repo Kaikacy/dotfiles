@@ -1,7 +1,7 @@
-font_family      family='JetBrainsMono Nerd Font' postscript_name=JetBrainsMonoNF-Light
-bold_font        family='JetBrainsMono Nerd Font' style=Medium
-italic_font      family='JetBrainsMono Nerd Font' postscript_name=JetBrainsMonoNF-LightItalic
-bold_italic_font family='JetBrainsMono Nerd Font' style='Medium Italic'
+# font_family      family='JetBrainsMono Nerd Font' postscript_name=JetBrainsMonoNF-Light
+# bold_font        family='JetBrainsMono Nerd Font' style=Medium
+# italic_font      family='JetBrainsMono Nerd Font' postscript_name=JetBrainsMonoNF-LightItalic
+# bold_italic_font family='JetBrainsMono Nerd Font' style='Medium Italic'
 
 font_size 14
 
@@ -59,7 +59,15 @@ map kitty_mod+d launch '~/.config/kitty/fzf-session-selector.sh'
 
 
 # BEGIN_KITTY_THEME
-# Tomorrow-Night-Custom
+# Default
 include current-theme.conf
 # END_KITTY_THEME
 
+
+
+# BEGIN_KITTY_FONTS
+font_family      family="JetBrainsMono Nerd Font"
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+# END_KITTY_FONTS

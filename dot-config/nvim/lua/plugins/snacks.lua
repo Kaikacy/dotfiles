@@ -18,6 +18,7 @@ return {
 		{ "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
 		{ "<leader>:", function() Snacks.picker.command_history() end, desc = "Command history" },
 		{ "<leader>N", function() Snacks.picker.notifications() end, desc = "Notification history" },
+		{ "<leader>.", function() Snacks.picker.files({ cwd = vim.fn.expand("%:p:h") }) end, desc = "Find files (cwd)" },
 		-- { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
 		{ "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Config" },
 		{ "<leader>ff", function() Snacks.picker.files() end, desc = "Files" },

@@ -102,11 +102,11 @@ return {
 						keymaps = {
 							["a="] = { query = "@assignment.outer", desc = "Outer Part of an Assignment" },
 							["i="] = { query = "@assignment.inner", desc = "Inner Part of an Assignment" },
-							["-l"] = {
+							["=l"] = {
 								query = "@assignment.lhs",
 								desc = "Left Hand Side of an Assignment",
 							},
-							["-r"] = {
+							["=r"] = {
 								query = "@assignment.rhs",
 								desc = "Right Hand Side of an Assignment",
 							},
