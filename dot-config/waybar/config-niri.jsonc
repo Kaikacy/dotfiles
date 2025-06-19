@@ -4,7 +4,7 @@
   "position": "bottom",
   "height": 24,
   "spacing": 0,
-  "modules-left": ["hyprland/workspaces", "hyprland/submap", "hyprland/window"],
+  "modules-left": ["niri/workspaces", "niri/window"],
   "modules-center": ["clock"],
   "modules-right": [
     "network",
@@ -14,7 +14,7 @@
     "pulseaudio",
     "backlight",
     "battery",
-    "hyprland/language",
+    "niri/language",
     "tray",
   ],
   "hyprland/workspaces": {
@@ -29,15 +29,32 @@
       "empty": "",
     },
   },
+  "niri/workspaces": {
+    "format": "<big>{icon}</big>",
+    "format-icons": {
+      "active": "",
+      "default": "",
+    },
+  },
   "hyprland/window": {
     "icon": true,
     "icon-size": 24,
+  },
+  "niri/window": {
+    "icon": true,
+    "icon-size": 20,
   },
   "hyprland/language": {
     "format": "{}  ",
     "format-en": "EN",
     "format-ka": "GE",
     "on-click": "hyprctl switchxkblayout a4tech-usb-device-keyboard next",
+  },
+  "niri/language": {
+    "format": "{}  ",
+    "format-en": "EN",
+    "format-ka": "GE",
+    "on-click": "niri msg action switch-layout next",
   },
   "tray": {
     "icon-size": 20,

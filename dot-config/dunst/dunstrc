@@ -3,7 +3,7 @@
     ### Geometry ###
     width = (250, 350)
     height = (0, 300)
-    origin = bottom-right
+    origin = top-right
     offset = (10, 10)
     notification_limit = 20
 

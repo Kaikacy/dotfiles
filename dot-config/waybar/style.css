@@ -21,13 +21,16 @@ window#waybar {
 }
 
 #workspaces button.active {
-    background-color: #0f1011;
     color: gold;
 }
 
 #workspaces button.special {
     background-color: #0f1011;
     color: violet;
+}
+
+#workspaces button.empty {
+    color: dimgrey
 }
 
 #submap {

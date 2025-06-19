@@ -1,0 +1,191 @@
+spawn-at-startup "waybar" "-c" "/home/kaikaci/.config/waybar/config-niri.jsonc"
+spawn-at-startup "xwayland-satellite" ":1"
+
+environment {
+    QT_QPA_PLATFORM "wayland"
+    QT_QPA_PLATFORMTHEME "qt6ct"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    DISPLAY ":1"
+}
+
+prefer-no-csd // disable client-side-decorations
+
+screenshot-path "~/Pictures/screenshots/%H:%M:%S_%d-%m-%Y.png"
+
+// since next release
+/-hotkey-overlay {
+    hide-not-bound
+}
+
+input {
+    keyboard {
+        xkb {
+            layout "us,ge"
+            options "grp:alt_altgr_toggle"
+        }
+
+        repeat-delay 260
+        repeat-rate 22
+    }
+
+    touchpad {
+        off
+        tap
+        dwt // disable while typing
+        dwtp // disable while trackpointing
+        natural-scroll
+    }
+
+    mouse {
+        accel-speed 0.5
+        accel-profile "flat"
+    }
+
+    focus-follows-mouse max-scroll-amount="67%"
+}
+
+gestures {
+    hot-corners {
+        off
+    }
+}
+
+layout {
+    gaps 2
+
+    always-center-single-column
+
+    focus-ring {
+        off
+    }
+    border {
+        width 2
+        active-color "cornflowerblue"
+        inactive-color "dimgrey"
+        urgent-color "red"
+    }
+
+    shadow {
+        on
+        draw-behind-window false
+    }
+
+    tab-indicator {
+        place-within-column
+        gap 0
+        gaps-between-tabs 2
+    }
+}
+
+window-rule {
+    match is-floating=true
+
+    border {
+        active-color "mediumseagreen"
+    }
+}
+
+window-rule {
+    match app-id="^qalculate"
+    match app-id="^imv$"
+    match app-id=r#"^com\.github\.FontManager\.FontViewer$"#
+
+    open-floating true
+}
+
+window-rule {
+    match app-id="^zen$"
+
+    open-maximized true
+}
+
+binds {
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+    Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn "rofi" "-show" "drun"; }
+    Mod+Ctrl+D hotkey-overlay-title="Open Launch Overlay" { spawn "wlr-which-key" "launch"; }
+
+    Mod+p hotkey-overlay-title="Open Control Center" { spawn "wlr-which-key" "control"; }
+    Mod+M hotkey-overlay-title="Open Power Menu" { spawn "wlr-which-key" "power"; }
+
+    Mod+O repeat=false { toggle-overview; }
+    Mod+Q { close-window; }
+
+    XF86AudioRaiseVolume  allow-when-locked=true { spawn "~/scripts/volume.sh" "inc" "5"; }
+    XF86AudioLowerVolume  allow-when-locked=true { spawn "~/scripts/volume.sh" "dec" "5"; }
+    XF86AudioMute         allow-when-locked=true { spawn "~/scripts/volume.sh" "toggle"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "scripts/brightness.sh" "inc" "5"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "scripts/brightness.sh" "dec" "5"; }
+
+    Mod+H     { focus-column-left-or-last; }
+    Mod+J     { focus-window-down; }
+    Mod+K     { focus-window-up; }
+    Mod+L     { focus-column-right-or-first; }
+    Mod+Ctrl+H { move-column-left; }
+    Mod+Ctrl+J { move-window-down; }
+    Mod+Ctrl+K { move-window-up; }
+    Mod+Ctrl+L { move-column-right; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
+    Mod+Shift+1 { move-workspace-to-index 1; }
+    Mod+Shift+2 { move-workspace-to-index 2; }
+    Mod+Shift+3 { move-workspace-to-index 3; }
+    Mod+Shift+4 { move-workspace-to-index 4; }
+    Mod+Shift+5 { move-workspace-to-index 5; }
+    Mod+Shift+6 { move-workspace-to-index 6; }
+    Mod+Shift+7 { move-workspace-to-index 7; }
+    Mod+Shift+8 { move-workspace-to-index 8; }
+    Mod+Shift+9 { move-workspace-to-index 9; }
+
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Comma  { consume-window-into-column; }
+    Mod+Period { expel-window-from-column; }
+
+    Mod+R       { switch-preset-column-width; }
+    Mod+Ctrl+R  { switch-preset-window-height; }
+    Mod+Shift+R { reset-window-height; }
+
+    Mod+F       { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+Ctrl+F  { expand-column-to-available-width; }
+
+    Mod+C      { center-column; }
+    Mod+Ctrl+C { center-visible-columns; }
+
+    Mod+W { toggle-column-tabbed-display; }
+
+    Mod+Minus { set-column-width "-5%"; }
+    Mod+Equal { set-column-width "+5%"; }
+    Mod+Ctrl+Minus { set-window-height "-5%"; }
+    Mod+Ctrl+Equal { set-window-height "+5%"; }
+
+    Mod+Space      { toggle-window-floating; }
+    Mod+Ctrl+Space { switch-focus-between-floating-and-tiling; }
+
+    Print       { screenshot; }
+    Shift+Print { screenshot-screen; }
+    Ctrl+Print  { screenshot-window; }
+
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    Mod+Shift+P { power-off-monitors; }
+}

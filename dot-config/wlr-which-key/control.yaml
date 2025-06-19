@@ -1,0 +1,49 @@
+font: "JetBrainsMono Nerd Font 14"
+background: "#030305"
+color: "#F5F5F5"
+border: "#D758B0"
+corner_r: 0
+padding: 15
+rows_per_column: 5
+column_padding: 25
+
+inhibit_compositor_keyboard_shortcuts: true
+
+menu:
+  - key: 'v'
+    desc: "Volume"
+    submenu:
+      - key: 'j'
+        desc: "Decrease"
+        cmd: "~/scripts/volume.sh dec 5"
+        keep_open: true
+      - key: 'k'
+        desc: "Increase"
+        cmd: "~/scripts/volume.sh inc 5"
+        keep_open: true
+      - key: 't'
+        desc: "Toggle mute"
+        cmd: "~/scripts/volume.sh toggle"
+  - key: 'b'
+    desc: "Brightness"
+    submenu:
+      - key: 'j'
+        desc: "Decrease"
+        cmd: "~/scripts/brightness.sh dec 5"
+        keep_open: true
+      - key: 'k'
+        desc: "Increase"
+        cmd: "~/scripts/brightness.sh inc 5"
+        keep_open: true
+  - key: 'm'
+    desc: "Media player"
+    submenu:
+      - key: 'l'
+        desc: "Next"
+        cmd: "playerctl next"
+      - key: 'h'
+        desc: "Previous"
+        cmd: "playerctl previous"
+      - key: 'space'
+        desc: "Play/Pause"
+        cmd: "playerctl play-pause"

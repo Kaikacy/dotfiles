@@ -1,13 +1,20 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
+
+function get-volume {
+    local volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep --only-matching '[0-9].*')
+    awk "BEGIN {print $volume * 100}" # get percentage from decimal
+} 
 
 case "$1" in
     "inc")
         wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ "$2"%+
-        notify-send -u low -i audio-volume-high -h string:synchronous:volume "Volume: " -h int:value:"`wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -o '[0-9.]*' | sed 's/\.//'`"
+        volume=$(get-volume)
+        notify-send -u low -i audio-volume-high -h string:synchronous:volume "Volume:" "$volume%" -h int:value:${volume}
         ;;
     "dec")
         wpctl set-volume @DEFAULT_AUDIO_SINK@ "$2"%-
-        notify-send -u low -i audio-volume-low -h string:synchronous:volume "Volume: " -h int:value:"`wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -o '[0-9.]*' | sed 's/\.//'`"
+        volume=$(get-volume)
+        notify-send -u low -i audio-volume-low -h string:synchronous:volume "Volume:" "$volume%" -h int:value:${volume}
         ;;
     "toggle")
         if [[ $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep MUTED) ]]; then

@@ -1,0 +1,36 @@
+font: "JetBrainsMono Nerd Font 14"
+background: "#030305"
+color: "#F5F5F5"
+border: "#4063BB"
+corner_r: 0
+padding: 15
+rows_per_column: 5
+column_padding: 25
+
+inhibit_compositor_keyboard_shortcuts: true
+
+menu:
+  - key: "space"
+    desc: "Zen browser"
+    cmd: "zen-browser"
+  - key: "Return"
+    desc: "Alacritty"
+    cmd: "alacritty"
+  - key: 'q'
+    desc: "Qalculate"
+    cmd: "qalculate-gtk"
+  - key: 'c'
+    desc: "Color Picker"
+    cmd: "hyprpicker --autocopy"
+  - key: 'f'
+    desc: "Font manager"
+    cmd: "font-manager"
+  - key: 'd'
+    desc: "Discord"
+    cmd: "discord"
+  - key: 'e'
+    desc: "PCMan FM"
+    cmd: "pcmanfm-qt"
+  - key: 'z'
+    desc: "Zathura"
+    cmd: "zathura"

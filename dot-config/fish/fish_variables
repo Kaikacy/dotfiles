@@ -2,7 +2,7 @@
 # VERSION: 3.0
 SETUVAR --export EDITOR:nvim
 SETUVAR --export MANPAGER:nvim\x20\x2bMan\x21\x20\x2du\x20\x7e/\x2econfig/nvim/pager\x2elua
-SETUVAR --export TERMINAL:ghostty
+SETUVAR --export TERMINAL:alacritty
 SETUVAR --export VISUAL:nvim
 SETUVAR __fish_initialized:3800
 SETUVAR _fisher_franciscolourenco_2F_done_files:\x7e/\x2econfig/fish/conf\x2ed/done\x2efish
@@ -40,4 +40,5 @@ SETUVAR fish_pager_color_description:yellow\x1e\x2di
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
+SETUVAR fish_user_paths:/home/kaikaci/\x2ecargo/bin
 SETUVAR pisces_pairs:\x28\x2c\x29\x1e\x5b\x2c\x5d\x1e\x7b\x2c\x7d\x1e\x22\x2c\x22\x1e\x27\x2c\x27

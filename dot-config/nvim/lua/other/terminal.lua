@@ -2,7 +2,7 @@ local defaults = {
 	["floating"] = {
 		width = 0.9,
 		height = 0.8,
-		border = "rounded",
+		border = "single",
 	},
 	["vertical"] = {
 		width = 0.35,
