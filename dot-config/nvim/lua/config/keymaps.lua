@@ -18,8 +18,8 @@ map("t", "<C-esc>", "<C-\\><C-n>", "exit terminal mode")
 
 map({ "n", "x" }, "<A-y>", '"+y', "Copy to system clipboard")
 
-map("i", "<C-h>", "<left>", "Left")
-map("i", "<C-l>", "<right>", "Right")
+map({ "i", "c" }, "<C-h>", "<left>", "Left")
+map({ "i", "c" }, "<C-l>", "<right>", "Right")
 
 -- better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", "Down", { expr = true, silent = true })

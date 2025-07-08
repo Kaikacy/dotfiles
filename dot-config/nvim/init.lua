@@ -6,4 +6,4 @@ require("other.terminal")
 
 require("lazy-setup")
 
-vim.cmd.colorscheme("cyberdream")
+vim.cmd.colorscheme("catppuccin-mocha")

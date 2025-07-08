@@ -95,7 +95,7 @@ return {
 	},
 	{
 		"scottmckendry/cyberdream.nvim",
-		enabled = true,
+		enabled = false,
 		lazy = false,
 		priority = 1000,
 		opts = {
@@ -120,5 +120,41 @@ return {
 		priority = 1000,
 		lazy = false,
 		name = "catppuccin",
+		---@module "catppuccin"
+		---@type CatppuccinOptions
+		opts = {
+			term_colors = true,
+			integrations = {
+				blink_cmp = true,
+				fidget = true,
+				grug_far = true,
+				harpoon = true,
+				mason = true,
+				snacks = {
+					enabled = true,
+					indent_scope_color = "flamingo",
+				},
+				lsp_trouble = true,
+				which_key = true,
+			},
+			custom_highlights = function(colors)
+				return {
+					BlinkCmpSignatureHelpActiveParameter = { link = "LspSignatureActiveParameter" },
+					BlinkCmpDoc = { bg = colors.crust },
+					BlinkCmpDocSeparator = { bg = colors.crust },
+					TreesitterContextBottom = { sp = colors.surface2 },
+				}
+			end,
+			color_overrides = {
+				mocha = {
+					base = "#050508",
+					mantle = "#050508",
+					crust = "#15151e",
+					surface0 = "#1c1c27",
+					surface1 = "#343649",
+					surface2 = "#41435b",
+				},
+			},
+		},
 	},
 }

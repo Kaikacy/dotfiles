@@ -235,6 +235,34 @@ return {
 				diagnostic_hint = c.builtin,
 			}
 		end
+		local function catppuccin()
+			local c = require("catppuccin.palettes").get_palette("mocha")
+			return {
+				bg = c.crust,
+				fg = c.text,
+				fg_dark = c.overlay2,
+				work_dir = c.overlay2,
+				scrollbar = c.yellow,
+				treesitter = c.green,
+				lsp = c.text,
+				macro_rec = c.peach,
+				git_branch = c.mauve,
+				git_add = c.green,
+				git_remove = c.red,
+				git_change = c.blue,
+				mode_normal = c.blue,
+				mode_insert = c.green,
+				mode_command = c.peach,
+				mode_visual = c.pink,
+				mode_terminal = c.yellow,
+				mode_replace = c.maroon,
+				mode_select = c.teal,
+				diagnostic_info = c.sky,
+				diagnostic_warning = c.yellow,
+				diagnostic_error = c.red,
+				diagnostic_hint = c.teal,
+			}
+		end
 		local colors = {
 			["moonfly"] = moonfly,
 			["kanagawa"] = kanagawa,
@@ -244,6 +272,7 @@ return {
 			["tokyonight-night"] = tokyonight,
 			["cyberdream"] = cyberdream,
 			["vague"] = vague,
+			["catppuccin-mocha"] = catppuccin,
 		}
 		heirline.load_colors(colors[vim.g.colors_name]())
 		vim.api.nvim_create_autocmd("ColorScheme", {
