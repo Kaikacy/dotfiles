@@ -1,9 +1,10 @@
 local M = {}
 
 function M.apply_config(config)
-	config.adjust_window_size_when_changing_font_size = true
+	config.adjust_window_size_when_changing_font_size = false
 	config.animation_fps = 1
 	config.cursor_blink_rate = 0
+	config.bold_brightens_ansi_colors = false
 	config.char_select_bg_color = "#111111"
 	config.command_palette_bg_color = "#111111"
 	config.enable_kitty_keyboard = true
@@ -22,7 +23,7 @@ function M.apply_config(config)
 		right = "0",
 		bottom = "0",
 	}
-	config.color_scheme = "deep"
+	config.color_scheme = "deep" -- deep, Wez
 	config.colors = {
 		compose_cursor = "gold",
 	}

@@ -47,30 +47,11 @@ return {
 		})
 
 		local servers = {
-			lua_ls = {},
-			ols = {},
-			clangd = {},
-			basedpyright = {},
-			zls = {},
-			jsonls = {},
-			gopls = {},
 			fish_lsp = {},
-			rust_analyzer = {},
-			cssls = {},
-			arduino_language_server = {
-				capabilities = {
-					textDocument = {
-						semanticTokens = vim.NIL,
-					},
-					workspace = {
-						semanticTokens = vim.NIL,
-					},
-				},
-			},
+			taplo = {},
 		}
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		-- capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
 
 		for name, opts in pairs(servers) do
 			opts.capabilities = opts.capabilities or capabilities

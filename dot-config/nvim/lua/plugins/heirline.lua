@@ -123,34 +123,6 @@ return {
 				diagnostic_hint = c.diag.hint,
 			}
 		end
-		local function eldritch()
-			local c = require("eldritch.colors").darker
-			return {
-				bg = c.bg_dark,
-				fg = c.fg,
-				fg_dark = c.fg_dark,
-				work_dir = c.fg_dark,
-				scrollbar = c.yellow,
-				treesitter = c.green,
-				lsp = c.fg,
-				macro_rec = c.orange,
-				git_branch = c.purple,
-				git_add = c.git.add,
-				git_remove = c.git.delete,
-				git_change = c.git.change,
-				mode_normal = c.dark_cyan,
-				mode_insert = c.green,
-				mode_command = c.orange,
-				mode_visual = c.pink,
-				mode_terminal = c.yellow,
-				mode_replace = c.red,
-				mode_select = c.magenta2,
-				diagnostic_info = c.dark_cyan,
-				diagnostic_warning = c.yellow,
-				diagnostic_error = c.red,
-				diagnostic_hint = c.bright_green,
-			}
-		end
 		local function nordic()
 			local c = require("nordic.colors")
 			return {
@@ -177,34 +149,6 @@ return {
 				diagnostic_warning = c.warning,
 				diagnostic_error = c.error,
 				diagnostic_hint = c.hint,
-			}
-		end
-		local function oh_lucy()
-			local c = require("oh-lucy.colors")
-			return {
-				bg = c.black,
-				fg = c.fg,
-				fg_dark = c.line_fg,
-				work_dir = c.selection_bg,
-				scrollbar = c.yellow,
-				treesitter = c.green,
-				lsp = c.fg,
-				macro_rec = c.orange,
-				git_branch = c.boolean,
-				git_add = c.diff_add,
-				git_remove = c.red_err,
-				git_change = c.diff_change,
-				mode_normal = c.diff_text,
-				mode_insert = c.green,
-				mode_command = c.orange,
-				mode_visual = c.pink,
-				mode_terminal = c.yellow,
-				mode_replace = c.red_err,
-				mode_select = c.red_key_w,
-				diagnostic_info = c.blue_type,
-				diagnostic_warning = c.yellow,
-				diagnostic_error = c.red_err,
-				diagnostic_hint = c.green_func,
 			}
 		end
 		local function tokyonight()
@@ -263,16 +207,43 @@ return {
 				diagnostic_hint = c.cyan,
 			}
 		end
+		local function vague()
+			local c = require("vague").get_palette()
+			return {
+				bg = c.line,
+				fg = c.fg,
+				fg_dark = c.floatBorder,
+				work_dir = c.floatBorder,
+				scrollbar = c.delta,
+				treesitter = c.plus,
+				lsp = c.fg,
+				macro_rec = c.number,
+				git_branch = c.parameter,
+				git_add = c.plus,
+				git_remove = c.error,
+				git_change = c.hint,
+				mode_normal = c.hint,
+				mode_insert = c.plus,
+				mode_command = c.number,
+				mode_visual = c.parameter,
+				mode_terminal = c.delta,
+				mode_replace = c.error,
+				mode_select = c.builtin,
+				diagnostic_info = c.hint,
+				diagnostic_warning = c.warning,
+				diagnostic_error = c.error,
+				diagnostic_hint = c.builtin,
+			}
+		end
 		local colors = {
 			["moonfly"] = moonfly,
 			["kanagawa"] = kanagawa,
 			["astrodark"] = astrodark,
 			["github_dark_default"] = github,
-			["eldritch"] = eldritch,
 			["nordic"] = nordic,
-			["oh-lucy"] = oh_lucy,
 			["tokyonight-night"] = tokyonight,
 			["cyberdream"] = cyberdream,
+			["vague"] = vague,
 		}
 		heirline.load_colors(colors[vim.g.colors_name]())
 		vim.api.nvim_create_autocmd("ColorScheme", {

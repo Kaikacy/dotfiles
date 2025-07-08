@@ -4,7 +4,7 @@ dynamic_padding = true
 
 [font]
 normal = { family = "JetBrainsMono Nerd Font" }
-size = 14
+size = 13
 
 [cursor]
 vi_mode_style.shape = "Block"
@@ -15,16 +15,16 @@ hide_when_typing = true
 
 [[hints.enabled]]
 command = "xdg-open"
-binding = {key = 'o', mods = "Control|Alt"}
+binding = { key = 'o', mods = "Control|Alt" }
 hyperlinks = true
 post_processing = true
 persist = false
-mouse = {enabled = true, mods = "Shift"}
+mouse = { enabled = true, mods = "Shift" }
 regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"
 
 [[hints.enabled]]
 action = "Select"
-binding = {key = 'i', mods = "Control|Alt"}
+binding = { key = 'i', mods = "Control|Alt" }
 hyperlinks = true
 post_processing = true
 persist = false
@@ -32,26 +32,26 @@ regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:
 
 [keyboard]
 bindings = [
-    { key = '=', mods = "Control", action = "ReceiveChar" },
-    { key = '-', mods = "Control", action = "ReceiveChar" },
-    { key = '+', mods = "Control|Shift", action = "IncreaseFontSize" },
-    { key = '_', mods = "Control|Shift", action = "DecreaseFontSize" },
-    { key = ')', mods = "Control|Shift", action = "ResetFontSize" },
-    { key = 'f', mods = "Control|Alt", action = "ScrollPageDown" },
-    { key = 'b', mods = "Control|Alt", action = "ScrollPageUP" },
-    { key = 'd', mods = "Control|Alt", action = "ScrollHalfPageDown" },
-    { key = 'u', mods = "Control|Alt", action = "ScrollHalfPageUP" },
-    { key = 'j', mods = "Control|Alt", action = "ScrollLineDown" },
-    { key = 'k', mods = "Control|Alt", action = "ScrollLineUP" },
-    { key = 'h', mods = "Control|Alt", action = "ScrollToTop" },
-    { key = 'l', mods = "Control|Alt", action = "ScrollToBottom" },
-    { key = '/', mods = "Control|Alt", action = "SearchBackward" },
-    { key = '?', mods = "Control|Shift|Alt", action = "SearchForward" },
-    { key = 'Space', mods = "Control|Shift", action = "ReceiveChar" },
-    { key = 'Space', mods = "Control|Alt", action = "ToggleViMode" },
-    { key = 'Enter', mods = "Control|Alt", action = "CreateNewWindow" },
-    { key = 'N', mods = "Control|Alt", action = "SpawnNewInstance" },
-    { key = 'W', mods = "Control|Alt", action = "Quit" },
+  { key = '=', mods = "Control", action = "ReceiveChar" },
+  { key = '-', mods = "Control", action = "ReceiveChar" },
+  { key = '+', mods = "Control|Shift", action = "IncreaseFontSize" },
+  { key = '_', mods = "Control|Shift", action = "DecreaseFontSize" },
+  { key = ')', mods = "Control|Shift", action = "ResetFontSize" },
+  { key = 'f', mods = "Control|Alt", action = "ScrollPageDown" },
+  { key = 'b', mods = "Control|Alt", action = "ScrollPageUP" },
+  { key = 'd', mods = "Control|Alt", action = "ScrollHalfPageDown" },
+  { key = 'u', mods = "Control|Alt", action = "ScrollHalfPageUP" },
+  { key = 'j', mods = "Control|Alt", action = "ScrollLineDown" },
+  { key = 'k', mods = "Control|Alt", action = "ScrollLineUP" },
+  { key = 'h', mods = "Control|Alt", action = "ScrollToTop" },
+  { key = 'l', mods = "Control|Alt", action = "ScrollToBottom" },
+  { key = '/', mods = "Control|Alt", action = "SearchBackward" },
+  { key = '?', mods = "Control|Shift|Alt", action = "SearchForward" },
+  { key = 'Space', mods = "Control|Shift", action = "ReceiveChar" },
+  { key = 'Space', mods = "Control|Alt", action = "ToggleViMode" },
+  { key = 'Enter', mods = "Control|Alt", action = "CreateNewWindow" },
+  { key = 'N', mods = "Control|Alt", action = "SpawnNewInstance" },
+  { key = 'W', mods = "Control|Alt", action = "Quit" },
 ]
 
 [general]

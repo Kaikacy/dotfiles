@@ -18,7 +18,7 @@ menu:
     cmd: "systemctl reboot"
   - key: 'e'
     desc: "Log out"
-    cmd: "sh ~/scripts/logout.sh"
+    cmd: "~/scripts/logout.sh"
   - key: 'l'
     desc: "Lock session"
     cmd: "loginctl lock-session"

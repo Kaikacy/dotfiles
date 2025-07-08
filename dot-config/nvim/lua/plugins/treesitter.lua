@@ -129,11 +129,11 @@ return {
 							["a?"] = { query = "@conditional.outer", desc = "Outer conditional" },
 							["i?"] = { query = "@conditional.inner", desc = "Inner conditional" },
 
-							["ag"] = { query = "@comment.outer", desc = "Outer commnet" },
+							["ag"] = { query = "@comment.outer", desc = "Outer comment" },
 							["ig"] = { query = "@comment.inner", desc = "Inner comment" },
 
 							["ar"] = { query = "@return.outer", desc = "Outer return" },
-							["ir"] = { query = "@return.inner", desc = "Innre return" },
+							["ir"] = { query = "@return.inner", desc = "Inner return" },
 
 							["ak"] = { query = "@block.outer", desc = "Outer block" },
 							["ik"] = { query = "@block.inner", desc = "Inner block" },

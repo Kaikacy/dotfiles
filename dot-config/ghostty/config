@@ -10,7 +10,7 @@ adjust-cell-height = -3
 adjust-cursor-thickness = 1
 adjust-cursor-height = -3
 
-theme = "iTerm2 Tango Dark"
+theme = "kai"
 mouse-hide-while-typing = true
 unfocused-split-fill = "#000000"
 cursor-style = "block"
@@ -66,4 +66,4 @@ keybind = ctrl+alt+period=jump_to_prompt:1
 keybind = ctrl+shift+comma=open_config
 keybind = ctrl+shift+period=reload_config
 
-# vim: ft=toml
+# vim: ft=config

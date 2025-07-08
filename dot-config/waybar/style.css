@@ -46,6 +46,7 @@ window#waybar {
     color: dodgerblue;
 }
 
+#custom-dunst,
 #clock,
 #battery,
 #cpu,
@@ -122,6 +123,14 @@ window#waybar {
     color: grey;
 }
 
+#custom-dunst {
+    box-shadow: inset 0 -2px orange;
+}
+
+#custom-dunst.disabled {
+    box-shadow: inset 0 -2px grey;
+    color: grey;
+}
 
 #tray {
     box-shadow: inset 0 -2px whitesmoke;

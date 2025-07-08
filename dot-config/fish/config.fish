@@ -24,57 +24,8 @@ if status is-interactive
     set -g __fish_git_prompt_showupstream auto
     set -g __fish_git_prompt_color_upstream brblue
 
+    # source ~/.config/fish/prompt.fish
+    starship init fish | source
 end
 
-function fish_prompt
-    set -l last_status $status
-
-    set -l git_info (fish_vcs_prompt ' ')
-    set -l fmt_git
-    if test -n "$git_info"
-        set fmt_git (set_color brblack) (echo $git_info | string sub -s 2) (set_color normal)
-    end
-
-    set -l cwd (set_color --bold cyan) (basename (pwd | string replace $HOME '~')) ' ' (set_color normal)
-
-    set -l symbol_color green
-    if test $last_status -ne 0
-        set symbol_color red
-    else if jobs -q >/dev/null
-        set symbol_color yellow
-    end
-    set -l symbol (set_color --bold $symbol_color) 'λ ' (set_color normal)
-
-    echo -ns $cwd $fmt_git $fmt_jobs $symbol
-end
-
-function fish_right_prompt
-    set -l last_status $status
-    set -l cmd_duration $CMD_DURATION
-
-    set -l fmt_status
-    if test $last_status -ne 0
-        set fmt_status (set_color --bold red) ' ' $last_status (set_color normal)
-    end
-
-    set -l job_count (count (jobs --group))
-    set -l fmt_jobs
-    if test $job_count -ne 0
-        set fmt_jobs (set_color --bold yellow) ' ' $job_count (set_color normal)
-    end
-
-    set -l cmd_duration (expr (expr $cmd_duration + 500) / 1000)
-    set -l fmt_duration
-    if test $cmd_duration -ge 5
-        if test $cmd_duration -lt 60
-            set fmt_duration $cmd_duration s
-        else if test $cmd_duration -lt 3600
-            set fmt_duration (date -u -d @$cmd_duration "+%Mm%Ss")
-        else
-            set fmt_duration (date -u -d @$cmd_duration "+%Hh%Mm%Ss")
-        end
-        set fmt_duration (set_color --bold brblack) $fmt_duration (set_color normal)
-    end
-
-    echo -ns $fmt_duration $fmt_jobs $fmt_status
-end
+source ~/.config/fish/private.fish

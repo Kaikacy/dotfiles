@@ -29,6 +29,9 @@ return {
 				cpp = { "clang_format" },
 				jsonc = { "prettierd" },
 				json = { "prettierd" },
+				toml = { "taplo" },
+				sh = { "shfmt" },
+				bash = { "shfmt" },
 			},
 		})
 		conform.formatters.clang_format = { args = { "--style", "{IndentWidth: " .. vim.o.tabstop .. "}" } }

@@ -11,8 +11,8 @@ inhibit_compositor_keyboard_shortcuts: true
 
 menu:
   - key: "space"
-    desc: "Zen browser"
-    cmd: "zen-browser"
+    desc: "Vivaldi"
+    cmd: "vivaldi"
   - key: "Return"
     desc: "Alacritty"
     cmd: "alacritty"
@@ -28,6 +28,9 @@ menu:
   - key: 'd'
     desc: "Discord"
     cmd: "discord"
+  - key: 'n'
+    desc: "NeoChat"
+    cmd: "neochat"
   - key: 'e'
     desc: "PCMan FM"
     cmd: "pcmanfm-qt"

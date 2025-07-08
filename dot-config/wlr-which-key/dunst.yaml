@@ -1,0 +1,24 @@
+font: "JetBrainsMono Nerd Font 14"
+background: "#030305"
+color: "#F5F5F5"
+border: "#F0BE42"
+corner_r: 0
+padding: 15
+rows_per_column: 5
+column_padding: 25
+
+inhibit_compositor_keyboard_shortcuts: true
+
+menu:
+  - key: 'a'
+    desc: "Context menu"
+    cmd: "dunstctl context"
+  - key: 'p'
+    desc: "Pause/Unpause"
+    cmd: "dunstctl set-paused toggle"
+  - key: 'c'
+    desc: "Close last notification"
+    cmd: "dunstctl close"
+  - key: 'C'
+    desc: "Close all notifications"
+    cmd: "dunstctl close-all"

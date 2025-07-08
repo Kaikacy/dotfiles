@@ -30,7 +30,7 @@ return {
 	},
 	{
 		"bluz71/vim-moonfly-colors",
-		enabled = true,
+		enabled = false,
 		name = "moonfly",
 		lazy = false,
 		priority = 1000,
@@ -73,19 +73,6 @@ return {
 		},
 	},
 	{
-		"eldritch-theme/eldritch.nvim",
-		enabled = false,
-		lazy = false,
-		priority = 1000,
-		opts = {
-			palette = "darker",
-			dim_inactive = true,
-			on_highlights = function(hi, c)
-				hi.SnacksIndent = { fg = c.bg_highlight }
-			end,
-		},
-	},
-	{
 		"AlexvZyl/nordic.nvim",
 		enabled = false,
 		lazy = false,
@@ -107,21 +94,8 @@ return {
 		},
 	},
 	{
-		"sontungexpt/witch",
-		enabled = false,
-		lazy = false,
-		priority = 1000,
-		opts = {},
-	},
-	{
-		"EdenEast/nightfox.nvim",
-		enabled = false,
-		lazy = false,
-		priority = 1000,
-		opts = {},
-	},
-	{
 		"scottmckendry/cyberdream.nvim",
+		enabled = true,
 		lazy = false,
 		priority = 1000,
 		opts = {
@@ -134,5 +108,17 @@ return {
 				}
 			end,
 		},
+	},
+	{
+		"vague2k/vague.nvim",
+		enabled = false,
+		lazy = false,
+		priority = 1000,
+	},
+	{
+		"catppuccin/nvim",
+		priority = 1000,
+		lazy = false,
+		name = "catppuccin",
 	},
 }

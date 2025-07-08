@@ -1,6 +1,9 @@
 spawn-at-startup "waybar" "-c" "/home/kaikaci/.config/waybar/config-niri.jsonc"
 spawn-at-startup "xwayland-satellite" ":1"
 
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+
 environment {
     QT_QPA_PLATFORM "wayland"
     QT_QPA_PLATFORMTHEME "qt6ct"
@@ -77,6 +80,10 @@ layout {
     }
 }
 
+animations {
+    slowdown 0.8
+}
+
 window-rule {
     match is-floating=true
 
@@ -95,6 +102,8 @@ window-rule {
 
 window-rule {
     match app-id="^zen$"
+    match app-id="^brave-browser$"
+    match app-id="^vivaldi"
 
     open-maximized true
 }
@@ -104,10 +113,14 @@ binds {
 
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn "rofi" "-show" "drun"; }
-    Mod+Ctrl+D hotkey-overlay-title="Open Launch Overlay" { spawn "wlr-which-key" "launch"; }
 
+    Mod+Ctrl+D hotkey-overlay-title="Open Launch Menu" { spawn "wlr-which-key" "launch"; }
     Mod+p hotkey-overlay-title="Open Control Center" { spawn "wlr-which-key" "control"; }
     Mod+M hotkey-overlay-title="Open Power Menu" { spawn "wlr-which-key" "power"; }
+    Mod+N hotkey-overlay-title="Open Dunst Control Menu" { spawn "wlr-which-key" "dunst"; }
+
+    Mod+V hotkey-overlay-title="Show Clipboard History" { spawn "sh" "-c" "cliphist list | rofi -dmenu -p 'cliphist' | cliphist decode | wl-copy"; }
+    Mod+E hotkey-overlay-title="Show Emoji Menu" { spawn "rofi" "-modi" "emoji" "-show" "emoji";}
 
     Mod+O repeat=false { toggle-overview; }
     Mod+Q { close-window; }

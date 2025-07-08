@@ -15,6 +15,7 @@
     "backlight",
     "battery",
     "hyprland/language",
+    "custom/dunst",
     "tray",
   ],
   "hyprland/workspaces": {
@@ -38,6 +39,11 @@
     "format-en": "EN",
     "format-ka": "GE",
     "on-click": "hyprctl switchxkblayout a4tech-usb-device-keyboard next",
+  },
+  "custom/dunst": {
+    "exec": "~/.config/waybar/scripts/dunst.sh",
+    "on-click": "dunstctl set-paused toggle",
+    "restart-interval": 1,
   },
   "tray": {
     "icon-size": 20,

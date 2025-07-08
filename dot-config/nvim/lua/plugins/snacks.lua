@@ -54,25 +54,20 @@ return {
 		{ "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
 		{ "<leader>su", function() Snacks.picker.undo() end, desc = "Undo history" },
 		{ "<leader>sC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
-		-- LSP
 		{ "<leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "Symbols" },
 		{ "<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace symbols" },
 	},
+	---@module 'snacks'
 	---@type snacks.Config
 	opts = {
+		input = {},
 		indent = {
-			enabled = true,
 			animate = { enabled = false },
 		},
-		notifier = {
-			enabled = true,
-			-- style = "minimal",
-		},
-		quickfile = { enabled = true },
+		notifier = {},
+		quickfile = {},
 		statuscolumn = { enabled = false }, -- weird unpredictable bug,
 		words = {
-			enabled = true,
-			debounce = 180,
 			modes = { "n", "c" },
 		},
 		dashboard = {
@@ -133,6 +128,18 @@ return {
 						["<C-b>"] = { "list_scroll_up", mode = { "n", "i" } },
 					},
 				},
+			},
+		},
+		styles = {
+			input = {
+				keys = {
+					n_esc = { "<C-c>", { "cancel" }, mode = "i", expr = true },
+				},
+				relative = "cursor",
+				border = "single",
+			},
+			notification = {
+				border = "single",
 			},
 		},
 	},

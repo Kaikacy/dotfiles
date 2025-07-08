@@ -25,8 +25,8 @@ return {
 			{ "<leader>g", group = "Git" },
 			{ "gp", group = "Preview" },
 		},
-		win = {
-			no_overlap = true,
+		disable = {
+			ft = { "buffers" },
 		},
 	},
 }

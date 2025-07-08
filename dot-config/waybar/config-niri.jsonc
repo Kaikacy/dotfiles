@@ -15,20 +15,9 @@
     "backlight",
     "battery",
     "niri/language",
+    "custom/dunst",
     "tray",
   ],
-  "hyprland/workspaces": {
-    "persistent-workspaces": {
-      "*": 6,
-    },
-    "show-special": true,
-    "special-visible-only": true,
-    "format": "<big>{icon}</big>",
-    "format-icons": {
-      "default": "",
-      "empty": "",
-    },
-  },
   "niri/workspaces": {
     "format": "<big>{icon}</big>",
     "format-icons": {
@@ -36,19 +25,9 @@
       "default": "",
     },
   },
-  "hyprland/window": {
-    "icon": true,
-    "icon-size": 24,
-  },
   "niri/window": {
     "icon": true,
     "icon-size": 20,
-  },
-  "hyprland/language": {
-    "format": "{}  ",
-    "format-en": "EN",
-    "format-ka": "GE",
-    "on-click": "hyprctl switchxkblayout a4tech-usb-device-keyboard next",
   },
   "niri/language": {
     "format": "{}  ",
@@ -56,12 +35,18 @@
     "format-ka": "GE",
     "on-click": "niri msg action switch-layout next",
   },
+  "custom/dunst": {
+    "exec": "~/.config/waybar/scripts/dunst.sh",
+    "return-type": "json",
+    "on-click": "dunstctl set-paused toggle",
+    "restart-interval": 1,
+  },
   "tray": {
     "icon-size": 20,
     "spacing": 10,
   },
   "clock": {
-    "format": "{:%I:%M    %b %e }",
+    "format": "{:%I:%M    %a. %b %e }",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "year",
