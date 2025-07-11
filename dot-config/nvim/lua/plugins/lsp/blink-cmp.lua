@@ -22,13 +22,16 @@ return {
 				["<C-f>"] = { "select_and_accept", "fallback" },
 				["<C-j>"] = { "select_next", "fallback" },
 				["<C-k>"] = { "select_prev", "fallback" },
-				["<C-space>"] = { "show" },
+				["<C-e>"] = { "hide", "fallback" },
+				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
 			},
-			completion = { menu = { auto_show = true } },
+			completion = {
+				list = { selection = { auto_insert = false } },
+				menu = { auto_show = true },
+			},
 		},
 
 		appearance = {
-			use_nvim_cmp_as_default = false,
 			nerd_font_variant = "normal",
 			kind_icons = {
 				Array = "",
@@ -74,6 +77,7 @@ return {
 				max_height = vim.o.pumheight,
 
 				draw = {
+					treesitter = { "lsp" },
 					gap = 1,
 					columns = { { "kind_icon" }, { "label", "label_description", gap = 2 } },
 					components = {

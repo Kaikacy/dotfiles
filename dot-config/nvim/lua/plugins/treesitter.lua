@@ -1,6 +1,7 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "master",
 		build = ":TSUpdate",
 		event = { "BufReadPre", "BufNewFile" },
 		cmd = {
@@ -21,6 +22,12 @@ return {
 		keys = {
 			{ "<C-space>", desc = "Increment selection" },
 			{ "<BS>", desc = "Decrement selection", mode = "x" },
+			{ ";", mode = { "n", "x", "o" } },
+			{ ",", mode = { "n", "x", "o" } },
+			{ "f", mode = { "n", "x", "o" } },
+			{ "F", mode = { "n", "x", "o" } },
+			{ "t", mode = { "n", "x", "o" } },
+			{ "T", mode = { "n", "x", "o" } },
 		},
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
@@ -65,39 +72,43 @@ return {
 							["]f"] = { query = "@function.outer", desc = "Next function start" },
 							["]c"] = { query = "@class.outer", desc = "Next class start" },
 							["]a"] = { query = "@parameter.inner", desc = "Next argument start" },
+							["]h"] = { query = "@link", desc = "Next markdown link start" },
 						},
 						goto_next_end = {
 							["]K"] = { query = "@block.outer", desc = "Next block end" },
 							["]F"] = { query = "@function.outer", desc = "Next function end" },
 							["]C"] = { query = "@class.outer", desc = "Next class end" },
 							["]A"] = { query = "@parameter.inner", desc = "Next argument end" },
+							["]H"] = { query = "@link", desc = "Next markdown link end" },
 						},
 						goto_previous_start = {
 							["[k"] = { query = "@block.outer", desc = "Previous block start" },
 							["[f"] = { query = "@function.outer", desc = "Previous function start" },
-							["[c"] = { query = "@class.outer", desc = "Next class start" },
+							["[c"] = { query = "@class.outer", desc = "Previous class start" },
 							["[a"] = { query = "@parameter.inner", desc = "Previous argument start" },
+							["[h"] = { query = "@link", desc = "Previous markdown link start" },
 						},
 						goto_previous_end = {
 							["[K"] = { query = "@block.outer", desc = "Previous block end" },
 							["[F"] = { query = "@function.outer", desc = "Previous function end" },
 							["[C"] = { query = "@class.outer", desc = "Previous class end" },
 							["[A"] = { query = "@parameter.inner", desc = "Previous argument end" },
+							["[H"] = { query = "@link", desc = "Previous markdown link end" },
 						},
 					},
 					swap = {
 						enable = true,
 						swap_next = {
-							[">K"] = { query = "@block.outer", desc = "Swap next block" },
-							[">F"] = { query = "@function.outer", desc = "Swap next function" },
-							[">C"] = { query = "@class.outer", desc = "Swap next class" },
-							[">A"] = { query = "@parameter.inner", desc = "Swap next argument" },
+							["]<C-k>"] = { query = "@block.outer", desc = "Swap next block" },
+							["]<C-f>"] = { query = "@function.outer", desc = "Swap next function" },
+							["]<C-c>"] = { query = "@class.outer", desc = "Swap next class" },
+							["]<C-a>"] = { query = "@parameter.inner", desc = "Swap next argument" },
 						},
 						swap_previous = {
-							["<K"] = { query = "@block.outer", desc = "Swap previous block" },
-							["<F"] = { query = "@function.outer", desc = "Swap previous function" },
-							["<C"] = { query = "@class.outer", desc = "Swap previous class" },
-							["<A"] = { query = "@parameter.inner", desc = "Swap previous argument" },
+							["[<C-k>"] = { query = "@block.outer", desc = "Swap previous block" },
+							["[<C-f>"] = { query = "@function.outer", desc = "Swap previous function" },
+							["[<C-c>"] = { query = "@class.outer", desc = "Swap previous class" },
+							["[<C-a>"] = { query = "@parameter.inner", desc = "Swap previous argument" },
 						},
 					},
 					select = {
@@ -149,6 +160,14 @@ return {
 					},
 				},
 			})
+
+			local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+			vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
+			vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
+			vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f_expr, { expr = true })
+			vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { expr = true })
+			vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
+			vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
 		end,
 	},
 }

@@ -8,6 +8,20 @@ return {
 	config = function()
 		local lsp = require("lspconfig")
 
+		vim.diagnostic.config({
+			severity_sort = true,
+			virtual_text = { current_line = true },
+		})
+
+		local servers = {
+			fish_lsp = {},
+		}
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		for name, opts in pairs(servers) do
+			opts.capabilities = opts.capabilities or capabilities
+			lsp[name].setup(opts)
+		end
+
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("user-lsp-config", {}),
 			callback = function(args)
@@ -40,22 +54,5 @@ return {
 				map("n", "<leader>lr", vim.lsp.buf.rename, "Rename symbol")
 			end,
 		})
-
-		vim.diagnostic.config({
-			severity_sort = true,
-			virtual_text = { current_line = true },
-		})
-
-		local servers = {
-			fish_lsp = {},
-			taplo = {},
-		}
-
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-		for name, opts in pairs(servers) do
-			opts.capabilities = opts.capabilities or capabilities
-			lsp[name].setup(opts)
-		end
 	end,
 }

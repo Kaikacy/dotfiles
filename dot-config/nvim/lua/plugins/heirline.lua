@@ -263,6 +263,34 @@ return {
 				diagnostic_hint = c.teal,
 			}
 		end
+		local function rose_pine()
+			local c = require("rose-pine.palette")
+			return {
+				bg = c.surface,
+				fg = c.text,
+				fg_dark = c.subtle,
+				work_dir = c.subtle,
+				scrollbar = c.gold,
+				treesitter = c.pine,
+				lsp = c.text,
+				macro_rec = c.rose,
+				git_branch = c.iris,
+				git_add = c.foam,
+				git_remove = c.love,
+				git_change = c.pine,
+				mode_normal = c.pine,
+				mode_insert = c.gold,
+				mode_command = c.rose,
+				mode_visual = c.iris,
+				mode_terminal = c.foam,
+				mode_replace = c.love,
+				mode_select = c.love,
+				diagnostic_info = c.foam,
+				diagnostic_warning = c.gold,
+				diagnostic_error = c.love,
+				diagnostic_hint = c.iris,
+			}
+		end
 		local colors = {
 			["moonfly"] = moonfly,
 			["kanagawa"] = kanagawa,
@@ -273,6 +301,7 @@ return {
 			["cyberdream"] = cyberdream,
 			["vague"] = vague,
 			["catppuccin-mocha"] = catppuccin,
+			["rose-pine"] = rose_pine,
 		}
 		heirline.load_colors(colors[vim.g.colors_name]())
 		vim.api.nvim_create_autocmd("ColorScheme", {

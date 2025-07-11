@@ -157,4 +157,28 @@ return {
 			},
 		},
 	},
+	{
+		"rose-pine/neovim",
+		priority = 1000,
+		lazy = false,
+		name = "rose-pine",
+		opts = {
+			palette = {
+				main = {
+					base = "#0f0e16",
+					surface = "#161521",
+					overlay = "#29263e",
+					highlight_low = "#252434",
+					highlight_med = "#3a374b",
+					highlight_high = "#48455a",
+				},
+			},
+			highlight_groups = {
+				BlinkCmpMenu = { link = "Pmenu" },
+				BlinkCmpMenuSelection = { link = "PmenuSel" },
+				BlinkCmpScrollBarThumb = { link = "PmenuThumb" },
+				BlinkCmpScrollBarGutter = { link = "PmenuSbar" },
+			},
+		},
+	},
 }
