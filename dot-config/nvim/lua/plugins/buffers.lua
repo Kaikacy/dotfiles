@@ -1,6 +1,6 @@
 return {
     dir = "~/Code/other/nvim-plugins/buffers",
-    keys = { "<TAB>", "<CMD>BuffersToggle<CR>" },
+    keys = { { "<TAB>", "<CMD>BuffersToggle<CR>" } },
     config = function()
         ---@module "buffers"
         ---@type buffers.Config
