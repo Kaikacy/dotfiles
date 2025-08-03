@@ -1,0 +1,7 @@
+lock "pidof swaylock || swaylock --daemonize"
+before-sleep "loginctl lock-session"
+
+timeout 360 'brightnessctl --save set 10%' resume 'brightnessctl --restore'
+timeout 480 'loginctl lock-session'
+timeout 480 'swaymsg "output * power off"' resume 'swaymsg "output * power on" && brightnessctl --restore'
+timeout 1800 'systemctl suspend'

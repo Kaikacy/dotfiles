@@ -1,0 +1,84 @@
+[theme]
+theme = "native"
+
+[theme.overrides]
+good_fg = "#75c06b"
+warning_fg = "#c0b96b"
+info_fg = "#6195bb"
+critical_fg = "#c06b6b"
+
+[icons.overrides]
+backlight = "LIGHT"
+net_up = "UP"
+
+[[block]]
+block = "scratchpad"
+format = " $icon$count.eng(range:1..) |"
+
+[[block]]
+block = "github"
+interval = 60
+
+# [[block]]
+# block = "keyboard_layout"
+# driver = "sway"
+# sway_kb_identifier = "2522:37008:A4TECH_USB_Device_Keyboard"
+
+[[block]]
+block = "net"
+format = " $icon {$ssid $signal_strength $signal_strength.bar(vertical:true) |} ^icon_net_down $speed_down  ^icon_net_up $speed_up "
+inactive_format = " $icon Disconnected "
+
+[[block]]
+block = "disk_space"
+format = " $icon $percentage "
+interval = 15
+warning = 70
+alert = 90
+info_type = "used"
+merge_with_next = true
+
+[[block]]
+block = "memory"
+format = " $icon $mem_used_percents "
+interval = 3
+merge_with_next = true
+
+[[block]]
+block = "cpu"
+format = " $icon $utilization "
+interval = 3
+
+[[block]]
+block = "sound"
+format = " $icon {$volume $volume.bar(vertical:true) |}"
+max_vol = 100
+merge_with_next = true
+
+[[block]]
+block = "battery"
+format = " $icon $percentage $percentage.bar(vertical:true) "
+full_format = " $icon $percentage $percentage.bar(vertical:true) "
+full_threshold = 99
+interval = 5
+good = 70
+info = 70
+warning = 30
+critical = 20
+merge_with_next = true
+
+[[block]]
+block = "backlight"
+format = " $icon $brightness $brightness.bar(vertical:true) "
+
+[[block]]
+block = "uptime"
+format = " $icon $uptime.dur(pad_with:'') "
+
+[[block]]
+block = "notify"
+format = " NOTIFY $icon {$paused{$notification_count.eng(width:1) |}|}"
+
+[[block]]
+block = "time"
+format = " $icon $timestamp.datetime(format:'%I:%M %d-%b %a.') "

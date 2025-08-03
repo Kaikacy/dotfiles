@@ -1,0 +1,8 @@
+set show-hidden true
+set show-signature-information true
+set statusbar-home-tilde true
+set window-title-home-tilde true
+
+set guioptions "cshv"
+set database "sqlite"
+set zoom-step 5

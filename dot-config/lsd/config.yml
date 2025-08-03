@@ -1,0 +1,16 @@
+blocks:
+  - permission
+  - user
+  - group
+  - size
+  - date
+  - git
+  - name
+
+sorting:
+  dir-grouping: first
+
+symlink-arrow: 󰁔
+
+date: '+%R %b %d'
+

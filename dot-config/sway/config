@@ -1,0 +1,194 @@
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $move_resize_amount 25px
+set $terminal foot
+set $browser zen-browser
+set $menu 'rofi -show drun'
+set $emoji_menu 'rofi -modi emoji -show emoji -kb-secondary-copy "" -kb-custom-1 Ctrl-c'
+set $power_menu '~/scripts/power-menu.sh'
+set $clipboard_history 'cliphist list | rofi -dmenu -p "cliphist" | cliphist decode | wl-copy'
+
+# I/O
+output * {
+    bg #202020 solid_color
+    max_render_time 1
+}
+
+input type:keyboard {
+    repeat_delay 260
+    repeat_rate 22
+    xkb_layout us,ge
+}
+
+input type:touchpad {
+    events disabled
+    dwt enabled # disable-while-typing
+    natural_scroll enabled
+    tap enabled
+}
+
+input type:pointer {
+    accel_profile flat
+    pointer_accel 0.4
+}
+
+# STARTUP
+exec swayidle -w
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# GENERAL
+default_orientation auto
+
+floating_modifier $mod normal
+
+client.focused #4c7899 #285577 #ffffff #2ebff4
+
+font pango:monospace 10
+titlebar_padding 6 2
+for_window [all] title_format "<b>%title</b> (%app_id)"
+title_align center
+
+# RULES
+for_window [app_id="qalculate-gtk"] floating enabled
+for_window [app_id="FontViewer$"] floating enabled
+
+# KEYMAPS
+bindsym --to-code $mod+Return exec $terminal
+bindsym --to-code $mod+Q kill
+bindsym --to-code $mod+D exec $menu
+bindsym --to-code $mod+V exec $clipboard_history
+bindsym --to-code $mod+Ctrl+E exec $emoji_menu
+bindsym --to-code $mod+Ctrl+N exec networkmanager_dmenu
+
+bindsym --to-code $mod+Ctrl+D mode "launch"
+mode "launch" {
+    bindsym Space exec $browser; mode default
+    bindsym Return exec $terminal; mode default
+    bindsym --to-code C exec hyprpicker --autocopy; mode default
+    bindsym --to-code Q exec qalculate-gtk; mode default
+    bindsym --to-code D exec discord; mode default
+    bindsym --to-code F exec font-manager; mode default
+    bindsym --to-code E exec pcmanfm-qt; mode default
+    bindsym --to-code Z exec zathura; mode default
+    bindsym Escape mode default
+}
+
+bindsym --to-code $mod+Ctrl+R reload
+bindsym $mod+Period exec $power_menu
+
+bindsym --to-code $mod+$left focus left
+bindsym --to-code $mod+$down focus down
+bindsym --to-code $mod+$up focus up
+bindsym --to-code $mod+$right focus right
+bindsym --to-code $mod+Ctrl+$left move left $move_resize_amount
+bindsym --to-code $mod+Ctrl+$down move down $move_resize_amount
+bindsym --to-code $mod+Ctrl+$up move up $move_resize_amount
+bindsym --to-code $mod+Ctrl+$right move right $move_resize_amount
+bindsym --to-code $mod+Shift+$left resize shrink width $move_resize_amount
+bindsym --to-code $mod+Shift+$down resize shrink height $move_resize_amount
+bindsym --to-code $mod+Shift+$up resize grow height $move_resize_amount
+bindsym --to-code $mod+Shift+$right resize grow width $move_resize_amount
+
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+
+bindsym $mod+Ctrl+1 move container to workspace number 1
+bindsym $mod+Ctrl+2 move container to workspace number 2
+bindsym $mod+Ctrl+3 move container to workspace number 3
+bindsym $mod+Ctrl+4 move container to workspace number 4
+bindsym $mod+Ctrl+5 move container to workspace number 5
+bindsym $mod+Ctrl+6 move container to workspace number 6
+bindsym $mod+Ctrl+7 move container to workspace number 7
+bindsym $mod+Ctrl+8 move container to workspace number 8
+bindsym $mod+Ctrl+9 move container to workspace number 9
+
+bindsym $mod+Shift+1 exec ~/.config/sway/swap-workspaces.sh 1
+bindsym $mod+Shift+2 exec ~/.config/sway/swap-workspaces.sh 2
+bindsym $mod+Shift+3 exec ~/.config/sway/swap-workspaces.sh 3
+bindsym $mod+Shift+4 exec ~/.config/sway/swap-workspaces.sh 4
+bindsym $mod+Shift+5 exec ~/.config/sway/swap-workspaces.sh 5
+bindsym $mod+Shift+6 exec ~/.config/sway/swap-workspaces.sh 6
+bindsym $mod+Shift+7 exec ~/.config/sway/swap-workspaces.sh 7
+bindsym $mod+Shift+8 exec ~/.config/sway/swap-workspaces.sh 8
+bindsym $mod+Shift+9 exec ~/.config/sway/swap-workspaces.sh 9
+
+bindsym $mod+0 scratchpad show
+bindsym $mod+Ctrl+0 move scratchpad
+
+bindsym --to-code $mod+M mark --toggle "main"
+bindsym $mod+semicolon [con_mark="main"] focus
+
+bindsym --to-code $mod+I splith
+bindsym --to-code $mod+U splitv
+bindsym $mod+tab splitt
+bindsym --to-code $mod+O split none
+
+bindsym --to-code $mod+S layout stacking
+bindsym --to-code $mod+W layout tabbed
+bindsym --to-code $mod+E layout toggle split
+
+bindsym --to-code $mod+F fullscreen
+
+bindsym $mod+Space floating toggle
+bindsym $mod+Ctrl+Space focus mode_toggle
+bindsym --to-code $mod+P sticky toggle
+
+bindsym --to-code $mod+A focus parent
+bindsym --to-code $mod+N focus child
+
+bindsym --locked XF86AudioMute exec ~/scripts/volume.sh toggle
+bindsym --locked XF86AudioLowerVolume exec ~/scripts/volume.sh dec 5
+bindsym --locked XF86AudioRaiseVolume exec ~/scripts/volume.sh inc 5
+bindsym --locked XF86MonBrightnessDown exec ~/scripts/brightness.sh dec 5
+bindsym --locked XF86MonBrightnessUp exec ~/scripts/brightness.sh inc 5
+
+bindsym --to-code --locked --no-repeat $mod+Grave exec ~/scripts/kb-layout.sh next
+
+bindsym --to-code $mod+B mode "notification"
+mode "notification" {
+    bindsym --to-code A exec dunstctl context; mode default
+    bindsym --to-code C exec dunstctl close; mode default
+    bindsym --to-code P exec dunstctl set-paused toggle; mode default
+    bindsym Escape mode default
+}
+
+bindsym --to-code $mod+Ctrl+B mode "screen"
+mode "screen" {
+    bindsym --to-code W exec grimshot --notify savecopy window ~/Pictures/screenshots/w_$(date +%T_%d-%m_%y).png; mode default
+    bindsym --to-code A exec grimshot --notify savecopy area ~/Pictures/screenshots/a_$(date +%T_%d-%m_%y).png; mode default
+    bindsym --to-code S exec grimshot --notify savecopy screen ~/Pictures/screenshots/s_$(date +%T_%d-%m-%y).png; mode default
+    bindsym Escape mode default
+}
+
+# BAR
+bar {
+    position bottom
+
+    status_command i3status-rs ~/.config/i3status-rs/config.toml
+    separator_symbol "|"
+
+    # disable workspace scrolling
+    bindsym button4 nop
+    bindsym button5 nop
+
+    colors {
+        statusline #dfdfdf
+        background #323232
+        inactive_workspace #32323200 #32323200 #5c5c5c
+    }
+}
+
+# OTHER
+include /etc/sway/config.d/*
