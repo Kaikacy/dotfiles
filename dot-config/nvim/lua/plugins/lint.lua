@@ -17,8 +17,8 @@ return {
     config = function()
         local lint = require("lint")
         lint.linters_by_ft = {
-            bash = { "shcheck" },
-            sh = { "shcheck" },
+            bash = { "shellcheck" },
+            sh = { "shellcheck" },
         }
 
         vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave", "TextChanged" }, {

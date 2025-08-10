@@ -56,6 +56,8 @@ title_align center
 # RULES
 for_window [app_id="qalculate-gtk"] floating enabled
 for_window [app_id="FontViewer$"] floating enabled
+for_window [app_id="imv"] floating enabled
+for_window [app_id="swayimg"] floating enabled
 
 # KEYMAPS
 bindsym --to-code $mod+Return exec $terminal

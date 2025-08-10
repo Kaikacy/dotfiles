@@ -25,17 +25,17 @@ return {
         -- stylua: ignore start
         map("n", "<LEADER>a", function() harpoon:list():add() end)
         map("n", "<A-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-        map("n", "<A-1>", function() harpoon.list():select(1) end)
-        map("n", "<A-2>", function() harpoon.list():select(2) end)
-        map("n", "<A-3>", function() harpoon.list():select(3) end)
-        map("n", "<A-4>", function() harpoon.list():select(4) end)
-        map("n", "<A-5>", function() harpoon.list():select(5) end)
-        map("n", "<A-6>", function() harpoon.list():select(6) end)
-        map("n", "<A-7>", function() harpoon.list():select(7) end)
-        map("n", "<A-8>", function() harpoon.list():select(8) end)
-        map("n", "<A-9>", function() harpoon.list():select(9) end)
-        map("n", "<A-l>", function() harpoon.list():next() end)
-        map("n", "<A-h>", function() harpoon.list():prev() end)
+        map("n", "<A-1>", function() harpoon:list():select(1) end)
+        map("n", "<A-2>", function() harpoon:list():select(2) end)
+        map("n", "<A-3>", function() harpoon:list():select(3) end)
+        map("n", "<A-4>", function() harpoon:list():select(4) end)
+        map("n", "<A-5>", function() harpoon:list():select(5) end)
+        map("n", "<A-6>", function() harpoon:list():select(6) end)
+        map("n", "<A-7>", function() harpoon:list():select(7) end)
+        map("n", "<A-8>", function() harpoon:list():select(8) end)
+        map("n", "<A-9>", function() harpoon:list():select(9) end)
+        map("n", "<A-l>", function() harpoon:list():next() end)
+        map("n", "<A-h>", function() harpoon:list():prev() end)
         -- stylua: ignore end
     end,
 }

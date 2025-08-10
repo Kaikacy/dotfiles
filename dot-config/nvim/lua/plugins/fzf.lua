@@ -47,6 +47,7 @@ return {
                 },
             },
             files = {
+                hidden = false,
                 formatter = "path.filename_first",
             },
         })

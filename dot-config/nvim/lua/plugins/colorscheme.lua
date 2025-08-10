@@ -1,14 +1,11 @@
 return {
-    "loctvl842/monokai-pro.nvim",
+    "sainnhe/sonokai",
+    lazy = false,
+    priority = 1000,
     config = function()
-        require("monokai-pro").setup({
-            ---@param c Colorscheme
-            override = function(c)
-                return {
-                    NonText = { fg = c.base.dimmed4 },
-                }
-            end,
-        })
-        vim.cmd.colorscheme("monokai-pro-spectrum")
+        vim.g.sonokai_float_style = "dim"
+        vim.g.sonokai_diagnostic_virtual_text = "colored"
+        vim.cmd.colorscheme("sonokai")
+        vim.api.nvim_set_hl(0, "LspCodeLens", { link = "LineNr" })
     end,
 }

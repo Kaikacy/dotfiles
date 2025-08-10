@@ -5,22 +5,6 @@ return {
     },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-        vim.lsp.config["lua_ls"] = {
-            settings = {
-                Lua = {
-                    runtime = {
-                        version = "LuaJIT",
-                    },
-                    hint = {
-                        enable = true,
-                    },
-                    codeLens = {
-                        enable = true,
-                    },
-                },
-            },
-        }
-
         vim.diagnostic.config({
             severity_sort = true,
             virtual_text = {
@@ -69,12 +53,6 @@ return {
                         end,
                     })
                 end
-
-                -- folds
-                if client:supports_method("textDocument/foldingRange") then
-                    local win = vim.api.nvim_get_current_win()
-                    vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
-                end
             end,
         })
 
@@ -82,6 +60,8 @@ return {
         vim.lsp.enable({
             "lua_ls",
             "zls",
+            "gdscript",
+            "bashls",
         })
     end,
 }

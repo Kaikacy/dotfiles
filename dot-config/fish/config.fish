@@ -1,9 +1,7 @@
 if status is-interactive
 
     bind -M default \e\x7F backward-kill-word
-    bind -M default \ck history-search-backward
-    bind -M default \cj history-search-forward
-    bind -M default \cf accept-autosuggestion
+    bind -M default \cy accept-autosuggestion
     bind -M default \ch backward-char
     bind -M default \cl forward-char
     bind -M default \cb backward-word
