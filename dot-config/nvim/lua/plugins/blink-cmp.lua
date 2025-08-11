@@ -45,6 +45,7 @@ return {
             },
         },
         completion = {
+            list = { selection = { auto_insert = false } },
             menu = {
                 max_height = vim.o.pumheight,
                 draw = {

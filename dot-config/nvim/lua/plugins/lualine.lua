@@ -42,7 +42,6 @@ return {
             lualine_a = {},
             lualine_b = {},
             lualine_c = {
-                "filetype",
                 {
                     "filename",
                     newfile_status = true,
@@ -50,6 +49,7 @@ return {
                 },
             },
             lualine_x = {
+                "filetype",
                 "location",
             },
             lualine_y = {},

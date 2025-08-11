@@ -1,7 +1,21 @@
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
-        { "mason-org/mason.nvim", opts = {} },
+        {
+            "mason-org/mason.nvim",
+            cmd = {
+                "Mason",
+                "MasonInstall",
+                "MasonUninstall",
+                "MasonUninstallAll",
+                "MasonLog",
+                "MasonUpdate",
+            },
+            keys = {
+                { "<LEADER>M", "<CMD>Mason<CR>" },
+            },
+            opts = {},
+        },
     },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
@@ -13,7 +27,6 @@ return {
         })
 
         vim.keymap.set("n", "<LEADER>l", "<CMD>LspInfo<CR>")
-        vim.keymap.set("n", "<LEADER>M", "<CMD>Mason<CR>")
 
         -- inlay hints
         vim.keymap.set("n", "<LEADER>i", function()

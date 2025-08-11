@@ -1,5 +1,6 @@
 local o = vim.o
 local g = vim.g
+local opt = vim.opt
 
 g.mapleader = " "
 g.maplocalleader = " "
@@ -44,7 +45,9 @@ o.splitright = true
 o.completeopt = "fuzzy,menu,menuone,noinsert,popup"
 o.pumheight = 10
 
-o.virtualedit = "block,onemore"
+o.winborder = "single"
+
+o.virtualedit = "block"
 
 o.list = true
 o.listchars = "tab: ,trail:𜸎,multispace:·,lead: ,nbsp:␣"
@@ -56,7 +59,7 @@ o.conceallevel = 2
 o.foldmethod = "expr"
 o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 o.foldlevel = 99
-o.foldnestmax = 4
+-- o.foldnestmax = 4
 
 o.cursorline = true
 o.cursorlineopt = "number"
