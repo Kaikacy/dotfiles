@@ -2,7 +2,6 @@ return {
     "ggandor/leap.nvim",
     config = function()
         local leap = require("leap")
-        local leap_remote = require("leap.remote")
         leap.set_default_mappings()
 
         leap.opts.preview_filter = function(prev, curr, next)
@@ -14,7 +13,7 @@ return {
         end
 
         vim.keymap.set({ "n", "o" }, "gs", function()
-            leap_remote.action()
+            require("leap.remote").action()
         end)
 
         local remote_text_object = function(prefix)
@@ -22,7 +21,7 @@ return {
             if not ok or (ch == vim.keycode("<CR>")) then
                 return
             end
-            leap_remote.action({ input = prefix .. ch })
+            require("leap.remote").action({ input = prefix .. ch })
         end
         vim.keymap.set({ "o", "x" }, "ar", function()
             remote_text_object("a")

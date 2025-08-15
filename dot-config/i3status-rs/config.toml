@@ -2,10 +2,10 @@
 theme = "native"
 
 [theme.overrides]
-good_fg = "#75c06b"
-warning_fg = "#c0b96b"
-info_fg = "#6195bb"
-critical_fg = "#c06b6b"
+good_fg = "#44F656"
+warning_fg = "#F5E44E"
+info_fg = "#5E76FC"
+critical_fg = "#FF446F"
 
 [icons.overrides]
 backlight = "LIGHT"

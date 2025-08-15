@@ -4,6 +4,9 @@ local opt = vim.opt
 
 g.mapleader = " "
 g.maplocalleader = " "
+g.c_syntax_for_h = true
+
+o.termguicolors = true
 
 o.number = true
 o.relativenumber = true

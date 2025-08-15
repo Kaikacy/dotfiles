@@ -1,23 +1,15 @@
 return {
-    "gbprod/nord.nvim",
-    lazy = false,
-    priority = 1000,
+    "Mofiqul/vscode.nvim",
+    opts = {},
     config = function()
-        require("nord").setup({
-            ---@param c Nord.Palette
-            on_highlights = function(hi, c)
-                hi.TreesitterContextLineNumber = { fg = c.polar_night.light }
-                hi.TreesitterContextBottom = { underline = true, sp = c.polar_night.brightest }
-                hi.LspReferenceText = { bg = c.polar_night.bright }
-                hi.IlluminatedWordText = { link = "LspReferenceText" }
-                hi.IlluminatedWordRead = { link = "LspReferenceText" }
-                hi.IlluminatedWordWrite = { link = "LspReferenceText" }
-                hi.Pmenu = { bg = c.polar_night.origin }
-                hi.BlinkCmpMenuSelection = { bg = c.polar_night.bright }
-                hi.Special = { fg = c.frost.ice }
-                hi.LeapBackdrop = { fg = c.polar_night.light, italic = false }
-            end,
+        local c = require("vscode.colors").get_colors()
+        require("vscode").setup({
+            italic_comments = true,
+            group_overrides = {
+                TreesitterContext = { bg = c.vscLeftDark },
+                TreesitterContextLineNumber = { fg = c.vscSplitLight },
+            },
         })
-        vim.cmd.colorscheme("nord")
+        vim.cmd("colorscheme vscode")
     end,
 }

@@ -54,3 +54,7 @@ map("n", "<LEADER>c", "<CMD>bdelete<CR>", { desc = "Close current buffer" })
 map("n", "<C-i>", "<C-i>")
 
 map("n", "<LEADER>L", "<CMD>Lazy<CR>")
+
+map({ "n", "t" }, "<C-;>", "<CMD>TermToggleFloating<CR>", { desc = "Toggle floating terminal" })
+map({ "n", "t" }, "<C-CR>", "<CMD>TermToggleHorizontal<CR>", { desc = "Toggle horizontal terminal" })
+map({ "n", "t" }, "<C-\\>", "<CMD>TermToggleVertical<CR>", { desc = "Toggle vertical terminal" })

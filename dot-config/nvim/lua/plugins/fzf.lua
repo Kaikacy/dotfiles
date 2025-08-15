@@ -57,24 +57,23 @@ return {
         -- KEYMAPS --
         local map = vim.keymap.set
 
-        local function with(func, opts)
-            opts = opts or {}
-            return function()
-                func(opts)
-            end
-        end
-
-        -- stylua: ignore start
         map("n", "<C-p>", fzf.files, { desc = "Find files" })
         map("n", "<LEADER>ff", fzf.files, { desc = "Find files" })
         map("n", "<LEADER>fo", fzf.oldfiles, { desc = "Old files" })
+        map("n", "<LEADER>.", function()
+            fzf.files({ cwd = vim.fn.expand("%:p:h") })
+        end, { desc = "Active buffer files" })
         map("n", "<C-/>", fzf.grep, { desc = "Grep" })
         map("n", "<LEADER>/", fzf.grep_visual, { desc = "Grep visual selection" })
         map("n", "<LEADER>z", fzf.zoxide, { desc = "Zoxide" })
-        map("n", "<LEADER>fc", with(fzf.files, { cwd = vim.fn.stdpath("config") }), { desc = "Find config files" })
+        map("n", "<LEADER>fc", function()
+            fzf.files({ cwd = vim.fn.stdpath("config") })
+        end, { desc = "Find config files" })
         map("n", "<LEADER>sh", fzf.helptags, { desc = "Search help" })
         map("n", "<LEADER>sk", fzf.keymaps, { desc = "Search keymaps" })
-        map( "n", "<LEADER>sc", with(fzf.colorschemes, { winopts = { fullscreen = false } }), { desc = "Search colorschemes" })
+        map("n", "<LEADER>sc", function()
+            fzf.colorschemes({ winopts = { fullscreen = false } })
+        end, { desc = "Search colorschemes" })
         map("n", "<LEADER>st", fzf.treesitter, { desc = "Search treesitter symbols" })
         map("n", "<LEADER>sM", fzf.manpages, { desc = "Search man pages" })
         map("n", "<LEADER>sm", fzf.marks, { desc = "Search marks" })
@@ -89,6 +88,5 @@ return {
         map("n", "<LEADER>gd", fzf.git_diff, { desc = "Git diff" })
         map("n", "<LEADER>gh", fzf.git_hunks, { desc = "Git hunks" })
         map("n", "<LEADER>gc", fzf.git_commits, { desc = "Git commits" })
-        -- stylua: ignore end
     end,
 }

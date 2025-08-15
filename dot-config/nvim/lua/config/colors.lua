@@ -1,0 +1,30 @@
+---@param colorscheme string
+function _G.load_colors(colorscheme)
+    vim.cmd.colorscheme(colorscheme)
+
+    if colorscheme == "retrobox" then
+        vim.cmd.hi("Comment gui=italic")
+        vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#303030" })
+        vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "IlluminatedWordText" })
+        vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "IlluminatedWordText" })
+        vim.api.nvim_set_hl(0, "LeapBackdrop", { fg = "#928374" })
+        vim.api.nvim_set_hl(0, "BlinkCmpLabelMatch", { link = "PmenuMatch" })
+        vim.api.nvim_set_hl(0, "BlinkCmpKindFunction", { fg = "#83a598" })
+        vim.api.nvim_set_hl(0, "BlinkCmpKindMethod", { link = "BlinkCmpKindFunction" })
+        vim.api.nvim_set_hl(0, "BlinkCmpKindEnum", { fg = "#d3869b" })
+        vim.api.nvim_set_hl(0, "BlinkCmpKindEnumMember", { link = "BlinkCmpKindEnum" })
+        vim.api.nvim_set_hl(0, "BlinkCmpKindEvent", { fg = "#fabd2f" })
+        vim.api.nvim_set_hl(0, "BlinkCmpKindConstant", { fg = "#d3869b" })
+        vim.api.nvim_set_hl(0, "BlinkCmpKindFile", { fg = "#ebdbb2" })
+        vim.api.nvim_set_hl(0, "BlinkCmpKindFolder", { fg = "#fe8019" })
+        vim.api.nvim_set_hl(0, "BlinkCmpKindVariable", { fg = "#b8bb26" })
+        vim.api.nvim_set_hl(0, "BlinkCmpKindClass", { fg = "#8ec07c" })
+        vim.api.nvim_set_hl(0, "BlinkCmpKindStruct", { link = "BlinkCmpKindClass" })
+        vim.api.nvim_set_hl(0, "BlinkCmpKindInterface", { link = "BlinkCmpKindClass" })
+        vim.api.nvim_set_hl(0, "BlinkCmpKindText", { fg = "#a89984" })
+        vim.api.nvim_set_hl(0, "BlinkCmpKindSnippet", { link = "BlinkCmpKindText" })
+        vim.api.nvim_set_hl(0, "Added", { fg = "#8ec07c" })
+        vim.api.nvim_set_hl(0, "Changed", { fg = "#83a598" })
+        vim.api.nvim_set_hl(0, "Removed", { fg = "#f84934" })
+    end
+end

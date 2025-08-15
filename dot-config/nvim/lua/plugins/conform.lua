@@ -31,12 +31,18 @@ return {
                 }
             end,
             formatters_by_ft = {
+                c = { "clang-format" },
                 lua = { "stylua" },
                 json = { "prettierd" },
                 jsonc = { "prettierd" },
                 bash = { "shfmt" },
                 sh = { "shfmt" },
                 toml = { "taplo" },
+            },
+            formatters = {
+                ["clang-format"] = {
+                    prepend_args = { "--fallback-style", "none" },
+                },
             },
         })
 

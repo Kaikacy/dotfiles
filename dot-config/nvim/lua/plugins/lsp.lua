@@ -75,6 +75,13 @@ return {
             "zls",
             "gdscript",
             "bashls",
+            "clangd",
         })
+
+        vim.lsp.config["clangd"] = {
+            init_options = {
+                fallbackFlags = { "-xc", "-std=c17" },
+            },
+        }
     end,
 }

@@ -6,8 +6,8 @@ return {
         ---@type buffers.Config
         vim.g.buffers_config = {
             close_keys = { "<ESC>", "<TAB>" },
-            -- separator = " - ",
-            -- formatter = "filename_first",
+            separator = " - ",
+            formatter = "filename_first",
         }
     end,
 }
