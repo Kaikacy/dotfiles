@@ -1,0 +1,202 @@
+### CONSTANTS ###
+# super key
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $move_amount 30px
+set $term foot
+set $menu "rofi -show drun"
+set $emoji-menu "rofimoji --action copy --prompt emoji"
+set $font "pango:monospace"
+set $wallpaper "/usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png"
+set $bg_color "#0f000f"
+
+
+### I/O ###
+output * {
+	# bg $wallpaper fill
+	bg $bg_color solid_color
+	subpixel vrgb
+	max_render_time 2
+}
+
+input type:touchpad {
+	tap enabled
+	natural_scroll enabled
+	middle_emulation enabled
+	dwt enabled
+}
+
+input type:pointer {
+	accel_profile flat
+}
+
+input type:keyboard {
+	repeat_delay 350
+	repeat_rate 20
+	xkb_layout us,ge
+}
+
+
+### STARTUP ###
+exec swayidle -w
+exec wl-paste --watch cliphist store
+exec mako
+exec udiskie
+exec ~/.config/sway/scripts/battery-notify.sh
+
+### OPTIONS ###
+font $font 10
+force_display_urgency_hint 300 ms
+titlebar_padding 8 4
+default_border normal 1
+default_floating_border normal 1
+
+
+### WINDOW RULES ###
+for_window [title="."] title_format "%title <span alpha='75%'>(%app_id)</span>"
+
+for_window [app_id="wev"] floating enable
+
+
+### BINDINGS ###
+bindsym $mod+Return exec $term
+bindsym --to-code $mod+d exec $menu
+bindsym --to-code $mod+Shift+q kill
+bindsym --to-code $mod+Control+r reload
+bindsym --to-code $mod+m exec ~/.config/sway/scripts/power-menu.sh
+
+bindsym --to-code $mod+Ctrl+e exec $emoji-menu
+bindsym --to-code $mod+Ctrl+v exec cliphist list | rofi -dmenu -p "clipboard" | cliphist decode | wl-copy
+bindsym --to-code $mod+Shift+v exec cliphist list | rofi -dmenu -p "clipdelete" | cliphist delete
+
+mode "notification" {
+    bindsym --to-code a exec makoctl menu -- rofi -dmenu; mode "default"
+    bindsym --to-code d exec makoctl dismiss; mode "default"
+    bindsym --to-code Shift+d exec makoctl dismiss --all; mode "default"
+    bindsym --to-code r exec makoctl restore; mode "default"
+    bindsym --to-code Ctrl+r exec makoctl reload; mode "default"
+
+    bindsym Escape mode "default"
+}
+bindsym --to-code $mod+Ctrl+n mode "notification"
+
+bindsym --to-code $mod+c exec hyprpicker --autocopy
+
+bindsym --to-code $mod+grave exec ~/.config/sway/scripts/kb-layout.sh next
+
+# focus container
+bindsym --to-code $mod+$left focus left
+bindsym --to-code $mod+$down focus down
+bindsym --to-code $mod+$up focus up
+bindsym --to-code $mod+$right focus right
+# move container
+bindsym --to-code $mod+Shift+$left move left $move_amount
+bindsym --to-code $mod+Shift+$down move down $move_amount
+bindsym --to-code $mod+Shift+$up move up $move_amount
+bindsym --to-code $mod+Shift+$right move right $move_amount
+# resize container
+mode "resize" {
+    bindsym --to-code $left resize shrink width $move_amount
+    bindsym --to-code $down resize grow height $move_amount
+    bindsym --to-code $up resize shrink height $move_amount
+    bindsym --to-code $right resize grow width $move_amount
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym --to-code $mod+r mode "resize"
+
+# change split direction
+bindsym --to-code $mod+b split horizontal
+bindsym --to-code $mod+v split vertical
+bindsym --to-code $mod+n split none
+# different container layouts
+bindsym --to-code $mod+s layout stacking
+bindsym --to-code $mod+w layout tabbed
+bindsym --to-code $mod+e layout toggle split
+
+bindsym --to-code $mod+f fullscreen toggle
+
+# toggle floating window
+bindsym $mod+Shift+space floating toggle
+# move focuse between floating and tiled layers
+bindsym $mod+space focus mode_toggle
+bindsym --to-code $mod+p sticky toggle
+
+bindsym --to-code $mod+a focus parent
+bindsym --to-code $mod+i focus child
+
+bindsym $mod+0 scratchpad show
+bindsym $mod+Shift+0 move scratchpad
+
+# switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+# swap workspace
+bindsym $mod+Ctrl+1 exec ~/.config/sway/scripts/swap-workspace.sh 1
+bindsym $mod+Ctrl+2 exec ~/.config/sway/scripts/swap-workspace.sh 2
+bindsym $mod+Ctrl+3 exec ~/.config/sway/scripts/swap-workspace.sh 3
+bindsym $mod+Ctrl+4 exec ~/.config/sway/scripts/swap-workspace.sh 4
+bindsym $mod+Ctrl+5 exec ~/.config/sway/scripts/swap-workspace.sh 5
+bindsym $mod+Ctrl+6 exec ~/.config/sway/scripts/swap-workspace.sh 6
+bindsym $mod+Ctrl+7 exec ~/.config/sway/scripts/swap-workspace.sh 7
+bindsym $mod+Ctrl+8 exec ~/.config/sway/scripts/swap-workspace.sh 8
+bindsym $mod+Ctrl+9 exec ~/.config/sway/scripts/swap-workspace.sh 9
+
+bindsym --locked XF86AudioMute exec ~/.config/sway/scripts/utilities.sh volume toggle
+bindsym --locked XF86AudioLowerVolume exec ~/.config/sway/scripts/utilities.sh volume dec 5
+bindsym --locked XF86AudioRaiseVolume exec ~/.config/sway/scripts/utilities.sh volume inc 5
+bindsym --locked XF86AudioMicMute exec ~/.config/sway/scripts/utilities.sh mic toggle
+bindsym --locked XF86MonBrightnessDown exec ~/.config/sway/scripts/utilities.sh brightness dec 5
+bindsym --locked XF86MonBrightnessUp exec ~/.config/sway/scripts/utilities.sh brightness inc 5
+
+bindsym Print exec ~/.config/sway/scripts/screenshot.sh
+bindsym --to-code $mod+o exec ~/.config/sway/scripts/screenshot.sh
+
+# middle mouse button (only works on titlebar by default)
+bindsym button2 kill
+
+# for moving and resizing with mouse
+floating_modifier $mod normal
+
+# laptop lid (doesn't always work)
+bindswitch lid:off systemctl suspend
+
+
+### STATUS BAR ###
+bar {
+    font $font 11
+    status_command ~/.config/sway/scripts/statusline-event.sh
+    mode hide
+    modifier $mod+Ctrl
+
+    colors {
+        statusline #ffffff
+        background #000000aa
+        inactive_workspace #000000aa #000000aa #ffffff
+    }
+}
+
+
+### OTHER ###
+include /etc/sway/config.d/*
