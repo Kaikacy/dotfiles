@@ -1,0 +1,45 @@
+height=200
+format=<b>%s</b>\n%b\n<small>(%a)</small>
+layer=overlay
+icon-path=/usr/share/icons/breeze-dark/:/usr/share/icons/Adwaita
+
+[body=""]
+format=<b>%s</b>\n<small>(%a)</small>
+
+[urgency=low]
+default-timeout=5000
+background-color=#222222
+border-color=#333333
+progress-color=#606060
+
+[urgency=normal]
+default-timeout=7000
+
+[urgency=critical]
+default-timeout=10000
+background-color=#900000
+border-color=#472f2f
+progress-color=#DC3933
+
+[actionable]
+format=(A) <b>%s</b>\n%b\n<small>(%a)</small>
+
+[actionable body=""]
+format=(A) <b>%s</b>\n<small>(%a)</small>
+
+[actionable grouped]
+format=(A) (%g) <b>%s</b>\n%b\n<small>(%a)</small>
+
+[actionable body="" grouped]
+format=(A) (%g) <b>%s</b>\n<small>(%a)</small>
+
+[app-name="system-osd"]
+default-timeout=2500
+anchor=bottom-center
+outer-margin=0,0,100
+
+[hidden]
+background-color=#222222
+border-color=#333333
+
+# vim: ft=confini
