@@ -1,0 +1,8 @@
+set database sqlite
+set show-hidden true
+set show-signature-information true
+set statusbar-home-tilde true
+set statusbar-home-tilde true
+set window-title-home-tilde true
+set guioptions shv
+set zoom-step 5
