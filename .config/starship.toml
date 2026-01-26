@@ -1,0 +1,59 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+format = '$directory([\[$git_branch$git_commit$git_state$git_status\]](purple))($status)($jobs)($cmd_duration)$character'
+
+[directory]
+format = '[$path]($style)([\[$read_only\]]($read_only_style))'
+style = 'bold cyan'
+read_only_style = 'bold red'
+fish_style_pwd_dir_length = 1
+read_only = 'RO'
+
+[status]
+disabled = false
+format = '([\[$status\]]($style))'
+style = 'red'
+
+[cmd_duration]
+format = '([\[$duration\]]($style))'
+style = 'yellow'
+
+[jobs]
+format = '([\[$number\]]($style))'
+style = 'blue'
+number_threshold = 1
+
+[git_branch]
+format = '[$branch(:$remote_branch)]($style)'
+style = 'purple'
+only_attached = true
+
+[git_commit]
+format = '@$hash([#$tag](yellow))'
+style = 'purple'
+tag_disabled = false
+tag_symbol = ''
+
+[git_status]
+format = '[$ahead_behind](white)[$conflicted$untracked$deleted$renamed$modified](red)[$staged](green)[$stashed](blue)'
+ahead = '>'
+behind = '<'
+diverged = '<>'
+up_to_date = '='
+conflicted = '!'
+modified = '*'
+deleted = '-'
+renamed = '~'
+stashed = '%'
+
+# TODO:
+[git_state]
+
+[character]
+success_symbol = '>'
+error_symbol = '>'
+vimcmd_symbol = '[<](bold red)'
+vimcmd_visual_symbol = '[v](bold purple)'
+vimcmd_replace_one_symbol = '[^](bold yellow)'
+vimcmd_replace_symbol = '[^](bold green)'
