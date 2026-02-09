@@ -1,5 +1,4 @@
 return {
-	-- TODO: add new (better) style to lemons.nvim (which will be config option to switch??)
 	dir = "~/code/nvim-plugins/Lemons.nvim",
 	priority = 1000,
 	lazy = false,
