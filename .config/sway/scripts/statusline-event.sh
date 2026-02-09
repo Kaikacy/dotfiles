@@ -21,6 +21,7 @@ readonly TIME_FORMAT='%H:%M:%S %B %d. %A'
 battery_block=
 time_block=
 volume_block=
+brightness_block=
 network_block=
 kb_layout_block=
 cpu_block=
@@ -56,6 +57,11 @@ get_volume_block() {
 	else
 		echo '{"full_text": "Volume '$percentage'%", '$SEPARATOR_WIDTH_FIELD'}'
 	fi
+}
+
+get_brightness_block() {
+	local percentage=$(brightnessctl info | grep -o "([0-9]*%)" | grep -o "[0-9]*")
+	echo '{"full_text": "Brightness '$percentage'%", '$SEPARATOR_WIDTH_FIELD'}'
 }
 
 get_network_block() {
@@ -152,6 +158,7 @@ update_status() {
 		return
 	fi
 	volume_block=$(get_volume_block)
+	brightness_block=$(get_brightness_block)
 	battery_block=$(get_battery_block)
 	time_block=$(get_time_block)
 	network_block=$(get_network_block)
@@ -161,7 +168,7 @@ update_status() {
 }
 
 print_statusline() {
-	echo "[$kb_layout_block, $network_block, $cpu_block, $memory_block, $volume_block, $battery_block, $time_block],"
+	echo "[$kb_layout_block, $network_block, $cpu_block, $memory_block, $brightness_block, $volume_block, $battery_block, $time_block],"
 }
 
 update_status
