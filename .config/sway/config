@@ -179,7 +179,6 @@ bindswitch lid:off systemctl suspend
 
 ### STATUS BAR ###
 bar {
-    font $font 11
     status_command ~/.config/sway/scripts/statusline-event.sh
     mode hide
     modifier $mod+Ctrl
