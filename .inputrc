@@ -1,0 +1,15 @@
+$if Bash
+    set colored-completion-prefix on
+    set colored-stats on
+    set completion-ignore-case on
+    set completion-map-case on
+    set history-size 1000
+    set search-ignore-case on
+    set show-all-if-ambiguous on
+    set show-all-if-unmodified on
+    set menu-complete-display-prefix on
+    set visible-stats on
+    set blink-matching-paren on
+    TAB: menu-complete
+    "\e[Z": menu-complete-backward
+$endif
