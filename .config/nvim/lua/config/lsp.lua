@@ -12,7 +12,10 @@ vim.diagnostic.config({
 })
 
 -- servers
-vim.lsp.enable({ "lua_ls" })
+vim.lsp.enable({
+	"lua_ls",
+	"clangd",
+})
 
 -- inlay hints
 vim.keymap.set("n", "<leader>li", function()
