@@ -21,6 +21,8 @@ require("config.autocmds")
 require("config.lsp")
 require("config.statusline")
 
+require("other.indent-guides")
+require("other.notify")
 require("other.terminal")
 
 -- vim has builtin plugin to disable search highlight

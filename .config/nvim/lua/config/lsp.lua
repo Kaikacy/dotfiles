@@ -1,9 +1,8 @@
----@module "snacks"
-
 vim.diagnostic.config({
 	severity_sort = true,
 	virtual_text = {
 		current_line = true,
+		prefix = "*",
 		source = "if_many",
 	},
 	float = {
@@ -15,11 +14,12 @@ vim.diagnostic.config({
 vim.lsp.enable({
 	"lua_ls",
 	"clangd",
+	"rust_analyzer",
 })
 
 -- inlay hints
 vim.keymap.set("n", "<leader>li", function()
-	Snacks.toggle.inlay_hints()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Toggle lsp inlay hints" })
 
 local function group(clear)
@@ -37,17 +37,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.keymap.set(mode, lhs, rhs, opts)
 		end
 
+        -- Some default keymaps are already set
         -- stylua: ignore start
-        map('n', "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Lsp definition" })
-        map('n', "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Lsp declaration" })
-        map('n', "grr", function() Snacks.picker.lsp_references() end, { desc = "Lsp references" })
-        map('n', "gri", function() Snacks.picker.lsp_implementations() end, { desc = "Lsp implementation" })
-        map('n', "grt", function() Snacks.picker.lsp_type_definitions() end, { desc = "Lsp type definition" })
-        map('n', "gO", function() Snacks.picker.lsp_symbols() end, { desc = "Lsp document symbols" })
-        map('n', "grI", function() Snacks.picker.lsp_incoming_calls() end, { desc = "Lsp incoming calls" })
-        map('n', "grO", function() Snacks.picker.lsp_outgoing_calls() end, { desc = "Lsp outgoing calls" })
-        map('n', "grd", function() Snacks.picker.diagnostics() end, { desc = "Lsp diagnostics" })
-        map('n', "grD", function() Snacks.picker.diagnostics_buffer() end, { desc = "Lsp buffer diagnostics" })
+        map('n', "gd", function() vim.lsp.buf.definition() end, { desc = "Lsp definition" })
+        map('n', "gD", function() vim.lsp.buf.declaration() end, { desc = "Lsp declaration" })
+        map('n', "grI", function() vim.lsp.buf.incoming_calls() end, { desc = "Lsp incoming calls" })
+        map('n', "grO", function() vim.lsp.buf.outgoing_calls() end, { desc = "Lsp outgoing calls" })
+        map('n', "grd", function() vim.diagnostic.setqflist() end, { desc = "Lsp diagnostics" })
 		-- stylua: ignore end
 
 		-- formatexpr
@@ -58,11 +54,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 
 		-- completions
-		if client:supports_method("textDocument/completion", args.buf) then
-			map("i", "<C-space>", function()
-				vim.lsp.completion.get()
-			end, { desc = "Trigger completions" })
-		end
+		-- if client:supports_method("textDocument/completion", args.buf) then
+		-- 	map("i", "<C-space>", function()
+		-- 		vim.lsp.completion.get()
+		-- 	end, { desc = "Trigger completions" })
+		-- end
 
 		-- codelens
 		if client:supports_method("textDocument/codeLens", args.buf) then
@@ -79,17 +75,27 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 
 		-- document highlights
-		-- if client:supports_method("textDocument/documentHighlight") then
-		--     vim.api.nvim_create_autocmd("CursorHold", {
-		--         group = vim.api.nvim_create_augroup("user-lsp", { clear = false }),
-		--         buffer = args.buf,
-		--         callback = vim.lsp.buf.document_highlight,
-		--     })
-		--     vim.api.nvim_create_autocmd("CursorMoved", {
-		--         group = vim.api.nvim_create_augroup("user-lsp", { clear = false }),
-		--         buffer = args.buf,
-		--         callback = vim.lsp.buf.clear_references,
-		--     })
-		-- end
+		if client:supports_method("textDocument/documentHighlight") then
+			-- CursorHold is triggered periodically, not just once
+			local hl_active = false
+			vim.api.nvim_create_autocmd("CursorHold", {
+				group = group(false),
+				buffer = args.buf,
+				callback = function()
+					if not hl_active then
+						vim.lsp.buf.document_highlight()
+						hl_active = true
+					end
+				end,
+			})
+			vim.api.nvim_create_autocmd("CursorMoved", {
+				group = group(false),
+				buffer = args.buf,
+				callback = function()
+					vim.lsp.buf.clear_references()
+					hl_active = false
+				end,
+			})
+		end
 	end,
 })

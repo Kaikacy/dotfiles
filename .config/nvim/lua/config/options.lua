@@ -27,6 +27,6 @@ o.splitright = true
 o.completeopt = "fuzzy,menu,menuone,popup,preview"
 o.pumheight = 15
 o.list = true
-o.listchars = "tab: ,trail:𜸎,multispace:∙,lead: ,nbsp:␣"
+o.listchars = "tab:│ ,trail:𜸎,multispace:∙,lead: ,nbsp:␣"
 o.foldlevel = 99 -- start with all folds open
 o.virtualedit = "block" -- better virtual-block mode
