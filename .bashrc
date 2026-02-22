@@ -41,4 +41,4 @@ if [[ $- == *i* ]]; then
     eval "$(starship init bash)"
 fi
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
