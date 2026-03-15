@@ -6,18 +6,19 @@ set $down j
 set $up k
 set $right l
 set $move_amount 30px
-set $term foot
+# using foot server
+set $term footclient
 set $menu "rofi -show drun"
 set $emoji-menu "rofimoji --action copy --prompt emoji"
 set $font "pango:monospace"
-set $wallpaper "/usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png"
+set $wallpaper "~/Pictures/wallpapers/waves-and-rocks-dim.jpg"
 set $bg_color "#0f000f"
 
 
 ### I/O ###
 output * {
-	# bg $wallpaper fill
-	bg $bg_color solid_color
+	bg $wallpaper fill
+	# bg $bg_color solid_color
 	subpixel vrgb
 	max_render_time 2
 }
@@ -41,25 +42,33 @@ input type:keyboard {
 
 
 ### STARTUP ###
+exec /lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec swayidle -w
 exec wl-paste --watch cliphist store
 exec mako
 exec udiskie
 exec ~/.config/sway/scripts/battery-notify.sh
+exec foot --server
+
 
 ### OPTIONS ###
 font $font 10
 force_display_urgency_hint 300 ms
-titlebar_padding 8 4
+titlebar_padding 4 2
 default_border normal 1
 default_floating_border normal 1
+# colors: title bar border, bg, fg, [indicator default:idk], [window border default:bg]
+client.focused #17384c #17384c #deb88d #027c9b #23565f
+client.unfocused #09141b #09141b #628d98
+client.focused_inactive #17384c #09141b #628d98 #17384c #17384c
+client.urgent #d15123 #d15123 #fee4ce #d15123
 
 
 ### WINDOW RULES ###
-for_window [title="."] title_format "%title <span alpha='75%'>(%app_id)</span>"
+for_window [title="."] title_format "%title (<i>%app_id</i>)"
 
 for_window [app_id="wev"] floating enable
-
+for_window [instance="pinentry"] floating enable
 
 ### BINDINGS ###
 bindsym $mod+Return exec $term
@@ -179,14 +188,21 @@ bindswitch lid:off systemctl suspend
 
 ### STATUS BAR ###
 bar {
+    font $font 11
     status_command ~/.config/sway/scripts/statusline-event.sh
+    # hidden by default
     mode hide
+    # bar is displayed when held
     modifier $mod+Ctrl
 
     colors {
-        statusline #ffffff
-        background #000000aa
-        inactive_workspace #000000aa #000000aa #ffffff
+        statusline #deb88d
+        background #09141b
+        separator #17384c
+        # border, bg, fg
+        inactive_workspace #09141b #09141b #628d98
+        focused_workspace #17384c #17384c #deb88d
+        urgent_workspace #d15123 #d15123 #09141b
     }
 }
 

@@ -9,10 +9,10 @@
 echo '{"version": 1}\n['
 
 readonly SEPARATOR_WIDTH_FIELD='"separator_block_width": 28'
-readonly COLOR_RED="#AA0000"
-readonly COLOR_YELLOW="#CC7722"
-readonly COLOR_GREEN="#00AA00"
-readonly COLOR_GRAY="#999999"
+readonly COLOR_RED="#d15123"
+readonly COLOR_YELLOW="#fca02f"
+readonly COLOR_GREEN="#027c9b"
+readonly COLOR_GRAY="#434b53"
 
 readonly UPDATE_TIME=7
 readonly BATTERY_PATH='/sys/class/power_supply/BAT1'
