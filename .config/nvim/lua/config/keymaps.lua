@@ -13,8 +13,8 @@ map({ "n", "v" }, "<leader>P", '"+P')
 map("n", "<C-i>", "<C-i>")
 
 -- Move up/down on wrapped lines, except if count is specified
-map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
-map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
+-- map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+-- map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
 -- Move line up/down and indent correctly
 map("n", "<A-j>", "<cmd>execute 'move .+' .. v:count1<cr>==")
@@ -39,3 +39,7 @@ end, { desc = "Delete other buffers" })
 map("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "Create new tab" })
 map("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "Close current tab" })
 map("n", "<leader>tC", "<cmd>tabonly<cr>", { desc = "Close other tabs" })
+
+map("n", "<leader>sp", function()
+	require("other.scratchpad").toggle()
+end, { desc = "Toggle lua scratchpad" })
