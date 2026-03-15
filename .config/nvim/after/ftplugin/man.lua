@@ -8,7 +8,7 @@ end
 map({ "n", "x" }, "q", "<cmd>q<cr>", { nowait = true })
 
 -- regex for man references (similar to git-push(1))
-local man_ref_regex = [[[a-z-]\+(\d\(.\|\))]]
+local man_ref_regex = [[[a-zA-Z_-]\+([a-z0-9]\{-1,})]]
 
 -- search for other man pages in visible buffer (similar to sway(5))
 map("n", "<cr>", function()
