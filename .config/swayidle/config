@@ -1,5 +1,5 @@
 timeout 360 'brightnessctl set --save 10%' resume 'brightnessctl --restore'
 timeout 600 'swaymsg output * power off; swaylock --daemonize' resume 'swaymsg output * power on'
 timeout 900 'systemctl suspend'
-before-sleep 'swaylock'
+before-sleep 'swaylock --daemonize'
 after-resume 'swaymsg output * power on'
