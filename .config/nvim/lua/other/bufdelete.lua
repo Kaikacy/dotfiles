@@ -6,6 +6,17 @@ local M = {}
 function M.buffer(buf)
 	buf = buf == 0 and vim.api.nvim_get_current_buf() or buf
 
+	-- Ask for confirmation if modified
+	if vim.bo[buf].modified then
+		local ok, choice =
+			pcall(vim.fn.confirm, ("Save changes to %q?"):format(vim.fn.bufname(buf)), "&Yes\n&No\n&Cancel")
+		if not ok or choice == 0 or choice == 3 then -- 0 for <Esc>/<C-c> and 3 for Cancel
+			return
+		elseif choice == 1 then -- Yes
+			vim.api.nvim_buf_call(buf, vim.cmd.write)
+		end
+	end
+
 	-- Most recent listed buffer to switch to
 	local info = vim.fn.getbufinfo({ buflisted = 1 })
 	for i = #info, 1, -1 do
@@ -31,7 +42,7 @@ function M.buffer(buf)
 	end
 
 	if vim.api.nvim_buf_is_valid(buf) then
-		vim.cmd("bdelete" .. buf)
+		pcall(vim.cmd, "bdelete!" .. buf)
 	end
 end
 
