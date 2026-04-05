@@ -1,33 +1,32 @@
 local o = vim.o
 local g = vim.g
 
-g.c_syntax_for_h = true -- ft=c for header files
-
-o.exrc = true -- allow project-local configs
 o.number = true
 o.relativenumber = true
 o.undofile = true
 o.swapfile = false
-o.updatetime = 2000 -- ms before CursorHold is triggered
-o.tabstop = 4 -- tab character (\t) size
-o.shiftwidth = 0 -- indent width (copy tabstop value)
-o.expandtab = true -- use spaces
-o.shiftround = true -- round indent to multiple of shiftwidth
-o.autoindent = true -- copy indent when starting a new line
-o.copyindent = true -- copy indent structure when autoindenting
--- o.breakindent = true -- indent wrapped lines
-o.linebreak = true -- wrap lines at word separators
-o.showbreak = "─"
+o.updatetime = 2000
+o.tabstop = 4 -- Tab size
+o.shiftwidth = 0 -- Indent width (copy tabstop value)
+o.expandtab = true -- Use spaces
+o.shiftround = true -- Round indent to multiple of shiftwidth
+o.autoindent = true -- Copy indent on new line
+o.copyindent = true -- Also copy indent structure with autoindent
+o.linebreak = true -- Wrap lines at word boundaries
+o.showbreak = "󰘍 "
 o.ignorecase = true
 o.smartcase = true
 o.signcolumn = "yes"
 o.inccommand = "split"
 o.scrolloff = 8
-o.splitbelow = true
 o.splitright = true
-o.completeopt = "fuzzy,menu,menuone,popup,preview"
+o.splitbelow = true
+o.completeopt = "fuzzy,noselect,menu,menuone,popup"
 o.pumheight = 15
 o.list = true
-o.listchars = "tab:│ ,trail:𜸎,multispace:∙,lead: ,nbsp:␣"
-o.foldlevel = 99 -- start with all folds open
-o.virtualedit = "block" -- better virtual-block mode
+o.listchars = "leadtab:│ ,tab:<->,trail:-,multispace:∙,lead: ,nbsp:␣"
+o.foldlevel = 99 -- Start with all folds open
+o.virtualedit = "block" -- Better virtual-block mode
+o.termguicolors = true -- Use 24-bit colors after :restart
+
+g.c_syntax_for_h = true -- Set filetype to c for header files

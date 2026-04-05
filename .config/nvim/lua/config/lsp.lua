@@ -1,102 +1,87 @@
-vim.diagnostic.config({
-	severity_sort = true,
-	virtual_text = {
-		current_line = true,
-		prefix = "*",
-		source = "if_many",
-	},
-	float = {
-		source = "if_many",
-	},
-})
-
--- servers
 vim.lsp.enable({
-	"lua_ls",
-	"clangd",
-	"rust_analyzer",
-	"zls",
+    -- "lua_ls",
+    "emmylua",
 })
 
--- inlay hints
-vim.keymap.set("n", "<leader>li", function()
-	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end, { desc = "Toggle lsp inlay hints" })
-
-local function group(clear)
-	vim.api.nvim_create_augroup("user-lsp", { clear = clear })
+local function lsp_progress(ev)
+    local value = ev.data.params.value
+    vim.api.nvim_echo({ { value.message or "done" } }, false, {
+        id = "lsp." .. ev.data.params.token,
+        kind = "progress",
+        source = "vim.lsp",
+        title = value.title,
+        status = value.kind ~= "end" and "running" or "success",
+        percent = value.percentage,
+    })
 end
 
-vim.api.nvim_create_autocmd("LspAttach", {
-	group = group(),
-	callback = function(args)
-		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-		local map = function(mode, lhs, rhs, opts)
-			if opts then
-				opts.buffer = opts.buffer or args.buf
-			end
-			vim.keymap.set(mode, lhs, rhs, opts)
-		end
+local map = vim.keymap.set
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
 
-        -- Some default keymaps are already set
-        -- stylua: ignore start
-        map('n', "gd", function() vim.lsp.buf.definition() end, { desc = "Lsp definition" })
-        map('n', "gD", function() vim.lsp.buf.declaration() end, { desc = "Lsp declaration" })
-        map('n', "grI", function() vim.lsp.buf.incoming_calls() end, { desc = "Lsp incoming calls" })
-        map('n', "grO", function() vim.lsp.buf.outgoing_calls() end, { desc = "Lsp outgoing calls" })
-        map('n', "grd", function() vim.diagnostic.setqflist() end, { desc = "Lsp diagnostics" })
-		-- stylua: ignore end
+local first_attach = true
 
-		-- formatexpr
-		if vim.g.loaded_conform then
-			-- don't overrule conform
-			-- unlikely to happend as conform loads lazily
-			vim.bo[args.buf].formatexpr = "v:lua.require'conform'.formatexpr()"
-		end
+autocmd("LspAttach", {
+    desc = "Lsp attach config",
+    group = augroup("my.lsp", {}),
+    callback = function(ev)
+        local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
 
-		-- completions
-		-- if client:supports_method("textDocument/completion", args.buf) then
-		-- 	map("i", "<C-space>", function()
-		-- 		vim.lsp.completion.get()
-		-- 	end, { desc = "Trigger completions" })
-		-- end
+        if first_attach then
+            first_attach = false
 
-		-- codelens
-		if client:supports_method("textDocument/codeLens", args.buf) then
-			map("n", "grc", vim.lsp.codelens.run, { desc = "Run codelens" })
+            vim.lsp.codelens.enable()
+            map("n", "grc", function() vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled()) end)
+            map("n", "grh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
+            vim.lsp.linked_editing_range.enable()
+            MiniIcons.tweak_lsp_kind()
+        end
 
-			vim.lsp.codelens.refresh({ bufnr = args.buf })
-			vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "BufWritePost" }, {
-				group = group(false),
-				buffer = args.buf,
-				callback = function()
-					vim.lsp.codelens.refresh({ bufnr = args.buf })
-				end,
-			})
-		end
+        map("n", "gd", function() vim.lsp.buf.definition() end, { buf = ev.buf })
+        map("n", "gD", function() vim.lsp.buf.declaration() end, { buf = ev.buf })
+        map("n", "grI", function() vim.lsp.buf.incoming_calls() end, { buf = ev.buf })
+        map("n", "grO", function() vim.lsp.buf.outgoing_calls() end, { buf = ev.buf })
 
-		-- document highlights
-		if client:supports_method("textDocument/documentHighlight") then
-			-- CursorHold is triggered periodically, not just once
-			local hl_active = false
-			vim.api.nvim_create_autocmd("CursorHold", {
-				group = group(false),
-				buffer = args.buf,
-				callback = function()
-					if not hl_active then
-						vim.lsp.buf.document_highlight()
-						hl_active = true
-					end
-				end,
-			})
-			vim.api.nvim_create_autocmd("CursorMoved", {
-				group = group(false),
-				buffer = args.buf,
-				callback = function()
-					vim.lsp.buf.clear_references()
-					hl_active = false
-				end,
-			})
-		end
-	end,
+        -- Use conform instead
+        vim.bo[ev.buf].formatexpr = nil
+
+        autocmd("LspProgress", {
+            buffer = ev.buf,
+            callback = lsp_progress,
+        })
+
+        if client:supports_method("textDocument/completion") then
+            vim.lsp.completion.enable(true, client.id, ev.buf)
+            map("i", "<C-SPACE>", function() vim.lsp.completion.get() end, { buf = ev.buf })
+        end
+
+        if client:supports_method("textDocument/foldingRange") then
+            -- Overrides treesitter
+            vim.wo[0][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+            vim.wo[0][0].foldmethod = "expr"
+        end
+
+        if client:supports_method("textDocument/documentHighlight") then
+            -- CursorHold is triggered periodically
+            local hl_active = false
+            autocmd("CursorHold", {
+                group = augroup("my.lsp", { clear = false }),
+                buffer = ev.buf,
+                callback = function()
+                    if not hl_active then
+                        vim.lsp.buf.document_highlight()
+                        hl_active = true
+                    end
+                end,
+            })
+            autocmd("CursorMoved", {
+                group = augroup("my.lsp", { clear = false }),
+                buffer = ev.buf,
+                callback = function()
+                    vim.lsp.buf.clear_references()
+                    hl_active = false
+                end,
+            })
+        end
+    end,
 })
