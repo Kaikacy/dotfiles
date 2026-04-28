@@ -1,1 +1,1 @@
-vim.cmd.colorscheme("seashells")
+vim.cmd.colorscheme("blackbg")

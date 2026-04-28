@@ -2,7 +2,6 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = "lua",
     once = true,
     callback = function()
-        vim.notify("wha")
         vim.cmd.packadd("mini.test")
         require("mini.test").setup()
 

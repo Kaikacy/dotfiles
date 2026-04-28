@@ -1,6 +1,7 @@
 vim.lsp.enable({
-    -- "lua_ls",
-    "emmylua",
+    "lua_ls",
+    -- "emmylua",
+    "clangd",
 })
 
 local function lsp_progress(ev)

@@ -21,12 +21,13 @@ o.inccommand = "split"
 o.scrolloff = 8
 o.splitright = true
 o.splitbelow = true
-o.completeopt = "fuzzy,noselect,menu,menuone,popup"
+o.completeopt = "fuzzy,noinsert,menu,menuone,popup"
 o.pumheight = 15
 o.list = true
 o.listchars = "leadtab:│ ,tab:<->,trail:-,multispace:∙,lead: ,nbsp:␣"
 o.foldlevel = 99 -- Start with all folds open
 o.virtualedit = "block" -- Better virtual-block mode
 o.termguicolors = true -- Use 24-bit colors after :restart
+-- o.guicursor = "a:block-Cursor" -- Always use block cursor with 'Cursor' hl-group
 
 g.c_syntax_for_h = true -- Set filetype to c for header files

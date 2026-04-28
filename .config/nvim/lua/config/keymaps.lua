@@ -9,6 +9,8 @@ map({ "n", "v" }, "<LEADER>y", '"+y', { desc = "Yank to system clipboard" })
 map({ "n", "v" }, "<LEADER>Y", '"+y$', { desc = "Yank until end to system clipboard" })
 map({ "n", "v" }, "<LEADER>p", '"+p', { desc = "Paste after from system clipboard" })
 map({ "n", "v" }, "<LEADER>P", '"+P', { desc = "Paste before from system clipboard" })
+map({ "n", "v" }, "<LEADER>]p", '"+]p', { desc = "Paste after from system clipboard and adjust indentation" })
+map({ "n", "v" }, "<LEADER>[p", '"+[p', { desc = "Paste before from system clipboard and adjust indentation" })
 
 -- By default <TAB> and <C-i> are equivalent
 map("n", "<C-i>", "<C-i>")
