@@ -52,23 +52,25 @@ exec foot --server
 
 
 ### OPTIONS ###
-font $font 10
+font $font 0.1
 force_display_urgency_hint 300 ms
-titlebar_padding 4 2
+titlebar_padding 3
+titlebar_border_thickness 0
 default_border normal 1
 default_floating_border normal 1
 # colors: title bar border, bg, fg, [indicator default:idk], [window border default:bg]
-client.focused #17384c #17384c #deb88d #027c9b #23565f
-client.unfocused #09141b #09141b #628d98
-client.focused_inactive #17384c #09141b #628d98 #17384c #17384c
-client.urgent #d15123 #d15123 #fee4ce #d15123
+# client.focused #000044 #000044 #deb88d #027c9b #23565f
+# client.unfocused #09141b #09141b #628d98
+# client.focused_inactive #17384c #09141b #628d98 #17384c #17384c
+# client.urgent #d15123 #d15123 #fee4ce #d15123
 
 
 ### WINDOW RULES ###
-for_window [title="."] title_format "%title (<i>%app_id</i>)"
+for_window [title="."] title_format " "
 
 for_window [app_id="wev"] floating enable
 for_window [instance="pinentry"] floating enable
+
 
 ### BINDINGS ###
 bindsym $mod+Return exec $term
@@ -188,7 +190,7 @@ bindswitch lid:off systemctl suspend
 
 ### STATUS BAR ###
 bar {
-    font $font 11
+    font $font 12
     status_command ~/.config/sway/scripts/statusline-event.sh
     # hidden by default
     mode hide
@@ -196,13 +198,13 @@ bar {
     modifier $mod+Ctrl
 
     colors {
-        statusline #deb88d
-        background #09141b
-        separator #17384c
-        # border, bg, fg
-        inactive_workspace #09141b #09141b #628d98
-        focused_workspace #17384c #17384c #deb88d
-        urgent_workspace #d15123 #d15123 #09141b
+        # statusline #deb88d
+        # background #09141b
+        # separator #17384c
+        # # border, bg, fg
+        # inactive_workspace #09141b #09141b #628d98
+        # focused_workspace #17384c #17384c #deb88d
+        # urgent_workspace #d15123 #d15123 #09141b
     }
 }
 

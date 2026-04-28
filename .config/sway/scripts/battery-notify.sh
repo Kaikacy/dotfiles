@@ -20,6 +20,7 @@ while true; do
 				notify-send "Low battery" \
 				--app-name="$APP_NAME" \
 				--urgency=critical \
+				--expire-time=0 \
 				--icon="battery-020"
 				last_sent=low
 			elif [ $percentage -ge 80 -a "$status" = "Charging" ]; then

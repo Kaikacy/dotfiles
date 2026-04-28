@@ -9,15 +9,16 @@
 echo '{"version": 1}\n['
 
 readonly SEPARATOR_WIDTH_FIELD='"separator_block_width": 28'
-readonly COLOR_RED="#d15123"
-readonly COLOR_YELLOW="#fca02f"
-readonly COLOR_GREEN="#027c9b"
-readonly COLOR_GRAY="#434b53"
+readonly COLOR_RED="#aa2929"
+readonly COLOR_YELLOW="#bb7722"
+readonly COLOR_GREEN="#29aa29"
+readonly COLOR_GRAY="#555555"
 
 readonly UPDATE_TIME=7
 readonly BATTERY_PATH='/sys/class/power_supply/BAT1'
 readonly TIME_FORMAT='%H:%M:%S %B %d. %A'
 
+tlp_profile_block=
 battery_block=
 time_block=
 volume_block=
@@ -26,6 +27,8 @@ network_block=
 kb_layout_block=
 cpu_block=
 memory_block=
+
+# TODO: move printing to separate function, that accepts text and color args
 
 get_time_block() {
 	echo '{"full_text": "'$(date +"$TIME_FORMAT")'"}'
@@ -42,8 +45,32 @@ get_battery_block() {
 	fi
 
 	local full_text=$(echo "$status $percentage%")
-	if [ $color ]; then
-		printf '{"full_text": "%s", "color": "%s", %s}' "$full_text" "$color" "$SEPARATOR_WIDTH_FIELD"
+	if [ "$color" ]; then
+		echo '{"full_text": "'$full_text'", '$SEPARATOR_WIDTH_FIELD', "color": "'$color'"}'
+	else
+		echo '{"full_text": "'$full_text'", '$SEPARATOR_WIDTH_FIELD'}'
+	fi
+}
+
+get_tlp_profile_block() {
+	local color=
+	local text=
+	case "`tlpctl get`" in
+		"balanced")
+			text="BAL"
+			;;
+		"performance")
+			text="PRF"
+			color="$COLOR_RED"
+			;;
+		"power-saver")
+			text="SAV"
+			color="$COLOR_GREEN"
+			;;
+	esac
+	local full_text="TLP profile $text"
+	if [ "$color" ]; then
+		echo '{"full_text": "'$full_text'", '$SEPARATOR_WIDTH_FIELD', "color": "'$color'"}'
 	else
 		echo '{"full_text": "'$full_text'", '$SEPARATOR_WIDTH_FIELD'}'
 	fi
@@ -159,6 +186,7 @@ update_status() {
 	fi
 	volume_block=$(get_volume_block)
 	brightness_block=$(get_brightness_block)
+	tlp_profile_block=$(get_tlp_profile_block)
 	battery_block=$(get_battery_block)
 	time_block=$(get_time_block)
 	network_block=$(get_network_block)
@@ -168,15 +196,15 @@ update_status() {
 }
 
 print_statusline() {
-	echo "[$kb_layout_block, $network_block, $cpu_block, $memory_block, $brightness_block, $volume_block, $battery_block, $time_block],"
+	echo "[$kb_layout_block, $network_block, $cpu_block, $memory_block, $brightness_block, $volume_block, $tlp_profile_block, $battery_block, $time_block],"
 }
 
 update_status
 
 # TODO: low priority: use update loop if statusbar stays visible
 swaymsg -t subscribe -m '["bar_state_update"]' | jq --unbuffered '.visible_by_modifier // empty' | \
+# $visible is always "true" as jq line doesn't output on "false" (can be modified to detect hide)
 while read visible; do
-	# $visible is always "true" as jq line doesn't output on "false" (can be modified to detect hide)
 	update_status skip_cpu
 	print_statusline
 	update_status only_cpu
