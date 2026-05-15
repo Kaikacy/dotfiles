@@ -41,3 +41,4 @@ vim.pack.add({
 vim.cmd.packadd("seashells.nvim")
 vim.cmd.packadd("blackbg.nvim")
 vim.cmd.packadd("omb.nvim")
+vim.cmd.packadd("buffers.nvim")
