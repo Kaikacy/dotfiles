@@ -1,6 +1,7 @@
 local o = vim.o
 local g = vim.g
 
+o.mouse = ""
 o.number = true
 o.relativenumber = true
 o.undofile = true
