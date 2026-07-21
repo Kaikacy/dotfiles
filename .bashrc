@@ -9,12 +9,14 @@ shopt -s histappend # Append history to file instead of overwriting
 ### Options ###
 shopt -s cdspell # Correct minor splling mistakes in dir names on cd
 shopt -s dirspell # Correct dir name spelling mistakes when completing
+# set -o notify # Notify asynchronously when background job completes
 
 ### Aliases ###
 alias ls='ls --color=auto --human-readable --file-type'
 alias grep='grep --color=auto'
 alias vi='nvim'
 alias dots='git --git-dir "$HOME/dotfiles" --work-tree "$HOME"'
+alias editkbd='vi -c "cd $HOME/qmk_firmware/keyboards/crkbd/keymaps/kaikacy" -c "edit ."'
 mkdircd() {
     mkdir -p "$@"
     cd "$@"
