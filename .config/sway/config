@@ -8,10 +8,12 @@ set $right l
 set $move_amount 30px
 # using foot server
 set $term footclient
+set $browser helium-browser
+set $calculator "footclient --app-id=qalc-cli qalc"
 set $menu "rofi -show drun"
 set $emoji-menu "rofimoji --action copy --prompt emoji"
 set $font "pango:monospace"
-set $wallpaper "~/Pictures/wallpapers/waves-and-rocks-dim.jpg"
+set $wallpaper "~/Pictures/wallpapers/default"
 set $bg_color "#0f000f"
 
 
@@ -63,6 +65,10 @@ default_floating_border normal 1
 # client.unfocused #09141b #09141b #628d98
 # client.focused_inactive #17384c #09141b #628d98 #17384c #17384c
 # client.urgent #d15123 #d15123 #fee4ce #d15123
+client.focused #000044 #000044 #b3b3b3 #4949d0
+client.unfocused #1b1b1b #1b1b1b #555555 #323232
+client.focused_inactive #323232 #323232 #828f97 #555555
+client.urgent #aa2929 #aa2929 #b3b3b3 #ff5555
 
 
 ### WINDOW RULES ###
@@ -70,6 +76,7 @@ for_window [title="."] title_format " "
 
 for_window [app_id="wev"] floating enable
 for_window [instance="pinentry"] floating enable
+for_window [app_id="qalc-cli"] floating enable
 
 
 ### BINDINGS ###
@@ -78,10 +85,20 @@ bindsym --to-code $mod+d exec $menu
 bindsym --to-code $mod+Shift+q kill
 bindsym --to-code $mod+Ctrl+r reload
 bindsym --to-code $mod+m exec ~/.config/sway/scripts/power-menu.sh
-
 bindsym --to-code $mod+Ctrl+e exec $emoji-menu
 bindsym --to-code $mod+Ctrl+v exec cliphist list | rofi -dmenu -p "clipboard" | cliphist decode | wl-copy
 bindsym --to-code $mod+Shift+v exec cliphist list | rofi -dmenu -p "clipdelete" | cliphist delete
+
+mode "launch" {
+    bindsym --to-code Return exec $term; mode "default"
+    bindsym --to-code b exec $browser; mode "default"
+    bindsym --to-code p exec hyprpicker --autocopy; mode "default"
+    bindsym --to-code c exec $calculator; mode "default"
+    bindsym --to-code z exec exec zathura; mode "default"
+
+    bindsym Escape mode "default"
+}
+bindsym --to-code $mod+Ctrl+d mode "launch"
 
 mode "notification" {
     bindsym --to-code a exec makoctl menu -- rofi -dmenu; mode "default"
@@ -94,9 +111,9 @@ mode "notification" {
 }
 bindsym --to-code $mod+Ctrl+n mode "notification"
 
-bindsym --to-code $mod+c exec hyprpicker --autocopy
-
 bindsym --to-code $mod+grave exec ~/.config/sway/scripts/kb-layout.sh next
+
+bindsym --to-code $mod+g exec wl-kbptr -o modes=floating','click -o mode_floating.source=detect
 
 # focus container
 bindsym --to-code $mod+$left focus left

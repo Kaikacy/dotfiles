@@ -17,14 +17,14 @@ while true; do
 			;;
 		*)
 			if [ $percentage -le 20 -a "$status" = "Discharging" ]; then
-				notify-send "Low battery" \
+				notify-send "Low battery" "Battery at 20%" \
 				--app-name="$APP_NAME" \
 				--urgency=critical \
 				--expire-time=0 \
 				--icon="battery-020"
 				last_sent=low
 			elif [ $percentage -ge 80 -a "$status" = "Charging" ]; then
-				notify-send "Battery almost charged" \
+				notify-send "Battery almost full" "Battery at 80%" \
 				--app-name="$APP_NAME" \
 				--urgency=low \
 				--icon="battery-080-charging"

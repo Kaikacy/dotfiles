@@ -16,7 +16,7 @@ readonly COLOR_GRAY="#555555"
 
 readonly UPDATE_TIME=7
 readonly BATTERY_PATH='/sys/class/power_supply/BAT1'
-readonly TIME_FORMAT='%H:%M:%S %B %d. %A'
+readonly TIME_FORMAT='%H:%M %A. %_d %B'
 
 tlp_profile_block=
 battery_block=
@@ -29,27 +29,29 @@ cpu_block=
 memory_block=
 
 # TODO: move printing to separate function, that accepts text and color args
+print() {
+	if [ "$2" ]; then
+		echo '{"full_text": "'$1'", "color": "'$2'", '$SEPARATOR_WIDTH_FIELD'}'
+	else
+		echo '{"full_text": "'$1'", '$SEPARATOR_WIDTH_FIELD'}'
+	fi
+}
 
 get_time_block() {
-	echo '{"full_text": "'$(date +"$TIME_FORMAT")'"}'
+	print "$(date +"$TIME_FORMAT")"
 }
 
 get_battery_block() {
 	local percentage=$(cat "$BATTERY_PATH/capacity")
 	local status=$(cat "$BATTERY_PATH/status")
 	local color=
-	if [ $percentage -ge 80 ]; then
+	if [ "$status" = "Charging" ]; then
 		color="$COLOR_GREEN"
 	elif [ $percentage -le 20 -a "$status" = "Discharging" ]; then
 		color="$COLOR_RED"
 	fi
 
-	local full_text=$(echo "$status $percentage%")
-	if [ "$color" ]; then
-		echo '{"full_text": "'$full_text'", '$SEPARATOR_WIDTH_FIELD', "color": "'$color'"}'
-	else
-		echo '{"full_text": "'$full_text'", '$SEPARATOR_WIDTH_FIELD'}'
-	fi
+	print "Bat: $status ${percentage}%" "$color"
 }
 
 get_tlp_profile_block() {
@@ -68,54 +70,49 @@ get_tlp_profile_block() {
 			color="$COLOR_GREEN"
 			;;
 	esac
-	local full_text="TLP profile $text"
-	if [ "$color" ]; then
-		echo '{"full_text": "'$full_text'", '$SEPARATOR_WIDTH_FIELD', "color": "'$color'"}'
-	else
-		echo '{"full_text": "'$full_text'", '$SEPARATOR_WIDTH_FIELD'}'
-	fi
+	print "TLP: $text" "$color"
 }
 
 get_volume_block() {
 	local raw_input=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
 	local percentage=$(echo "$raw_input" | awk '{printf "%0.f", $2 * 100}')
 	if echo "$raw_input" | grep -q "MUTED"; then
-		echo '{"full_text": "Volume MUTED", '$SEPARATOR_WIDTH_FIELD', "color": "'$COLOR_GRAY'"}'
+		print "Vol: MUTED" "$COLOR_GRAY"
 	else
-		echo '{"full_text": "Volume '$percentage'%", '$SEPARATOR_WIDTH_FIELD'}'
+		print "Vol: ${percentage}%"
 	fi
 }
 
 get_brightness_block() {
 	local percentage=$(brightnessctl info | grep -o "([0-9]*%)" | grep -o "[0-9]*")
-	echo '{"full_text": "Brightness '$percentage'%", '$SEPARATOR_WIDTH_FIELD'}'
+	print "Bri: ${percentage}%"
 }
 
 get_network_block() {
 	# TODO: ethernet
-	
+
 	local raw_active_connections=$(nmcli --terse --fields=name,type,device connection show --active)
 
 	local wifi_name=
 	local color=
 	local full_text=
 
-	# can't use echo with | (pipe) as that creates new subshell
-	# so current shell un-exported variables wouldn't be accessable
+	# can't use echo with pipe as that creates new subshell
+	# so current shell's un-exported variables wouldn't be accessable
 	while IFS=: read -r name type device; do
 		if [ "$type" = "loopback" ]; then
 			continue
 		fi
 		if echo "$type" | grep -q "wireless"; then
 			wifi_name="$name"
-			full_text="Wifi $name"
+			full_text="Wifi: $name"
 		fi
 	done << EOF
 $raw_active_connections
 EOF
 
 	if [ -z "$wifi_name" ]; then
-		echo '{"full_text": "DISCONNECTED", "color": "'$COLOR_GRAY'", '$SEPARATOR_WIDTH_FIELD'}'
+		print "Wifi: DISCONNECTED" "$COLOR_GRAY"
 		return
 	fi
 
@@ -129,18 +126,12 @@ EOF
 
 	# escape quotes for json
 	full_text=$(echo "$full_text" | sed 's/"/\\\"/g')
-
-	if [ -n "$color" ]; then
-		printf '{"full_text": "%s", "color": "%s", %s}' "$full_text" "$color" "$SEPARATOR_WIDTH_FIELD"
-	else
-		printf '{"full_text": "%s", %s}' "$full_text" "$SEPARATOR_WIDTH_FIELD"
-	fi
+	print "$full_text" "$color"
 }
 
 get_kb_layout_block() {
-	# good thing jq returns quoted string if -r (--raw-output) flag is not specified
-	local quoted_layout=$(swaymsg -t get_inputs | jq '.[] | select(.type == "keyboard").xkb_active_layout_name' | head -n1)
-	printf '{"full_text": %s, %s}' "$quoted_layout" "$SEPARATOR_WIDTH_FIELD"
+	local quoted_layout=$(swaymsg -t get_inputs | jq --raw-output '.[] | select(.type == "keyboard").xkb_active_layout_name' | head -n1)
+	print "Kbd: $quoted_layout"
 }
 
 # takes at least 1 sec for accurate data
@@ -153,12 +144,7 @@ get_cpu_block() {
 		color="$COLOR_YELLOW"
 	fi
 
-	local full_text="CPU load ${cpu_load}%"
-	if [ "$color" ]; then
-		printf '{"full_text": "%s", "color": "%s", %s}' "$full_text" "$color" "$SEPARATOR_WIDTH_FIELD"
-	else
-		printf '{"full_text": "%s", %s}' "$full_text" "$SEPARATOR_WIDTH_FIELD"
-	fi
+	print "CPU: ${cpu_load}%"
 }
 
 get_memory_block() {
@@ -170,12 +156,7 @@ get_memory_block() {
 		color="$COLOR_YELLOW"
 	fi
 
-	local full_text="Memory used ${memory_used}%"
-	if [ "$color" ]; then
-		printf '{"full_text": "%s", "color": "%s", %s}' "$full_text" "$color" "$SEPARATOR_WIDTH_FIELD"
-	else
-		printf '{"full_text": "%s", %s}' "$full_text" "$SEPARATOR_WIDTH_FIELD"
-	fi
+	print "Mem: ${memory_used}%" "$color"
 }
 
 # TODO: maybe: add only_ and skip_ check for other modules too
