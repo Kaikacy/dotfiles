@@ -14,6 +14,7 @@ vim.g.fff = {
         focus_preview = "<A-p>",
     },
     hl = {
+        normal = "Normal",
         border = "Whitespace",
         matched = "PmenuMatch",
         scrollbar = "PmenuThumb",

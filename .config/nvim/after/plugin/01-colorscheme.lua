@@ -1,1 +1,1 @@
-vim.cmd.colorscheme("blackbg")
+vim.cmd.colorscheme("lismore")

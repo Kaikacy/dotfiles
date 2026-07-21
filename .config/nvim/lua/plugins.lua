@@ -3,7 +3,9 @@ local hooks = {
         if data.kind == "update" then vim.cmd("TSUpdate") end
     end,
     ["fff.nvim"] = function(data)
-        if data.kind == "install" or data.kind == "update" then require("fff.download").download_or_build_binary() end
+        if data.kind == "install" or data.kind == "update" then
+            require("fff.download").download_or_build_binary()
+        end
     end,
 }
 
@@ -15,13 +17,19 @@ vim.api.nvim_create_autocmd("PackChanged", {
     end,
 })
 
-local function gh(path, data, version) return { src = "https://github.com/" .. path, data = data, version = version } end
+local function gh(path, data, version, name)
+    return {
+        src = "https://github.com/" .. path,
+        data = data,
+        version = version,
+        name = name,
+    }
+end
 vim.pack.add({
     gh("nvim-treesitter/nvim-treesitter"),
     gh("dmtrKovalenko/fff.nvim"),
-    gh("nvim-mini/mini.icons"),
-    gh("nvim-mini/mini.test", { lazy = true }),
-    gh("nvim-mini/mini.diff", { lazy = true }),
+    gh("saghen/blink.cmp", nil, vim.version.range("1.*")),
+    gh("nvim-mini/mini.nvim"),
     gh("nvim-treesitter/nvim-treesitter-textobjects"),
     gh("nvim-treesitter/nvim-treesitter-context"),
     gh("stevearc/conform.nvim", { lazy = true }),
@@ -30,6 +38,7 @@ vim.pack.add({
     gh("folke/persistence.nvim"),
     gh("kylechui/nvim-surround", nil, vim.version.range("^4.0.0")),
     gh("tpope/vim-fugitive"),
+    gh("neovim/nvim-lspconfig"),
 }, {
     load = function(plug_data)
         if plug_data.spec.data and plug_data.spec.data.lazy then return end
@@ -38,7 +47,6 @@ vim.pack.add({
 })
 
 -- Local plugins
-vim.cmd.packadd("seashells.nvim")
 vim.cmd.packadd("blackbg.nvim")
-vim.cmd.packadd("omb.nvim")
+vim.cmd.packadd("lismore.nvim")
 vim.cmd.packadd("buffers.nvim")

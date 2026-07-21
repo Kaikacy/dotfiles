@@ -16,3 +16,5 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     group = group,
     callback = function(args) set_guides(vim.bo[args.buf].shiftwidth) end,
 })
+
+vim.api.nvim_create_user_command("IndentGuidesRefresh", function() set_guides(vim.bo.shiftwidth) end, {})
