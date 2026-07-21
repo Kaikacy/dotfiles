@@ -1,3 +1,4 @@
+font=monospace 11
 height=200
 format=<b>%s</b>\n%b\n<small>(%a)</small>
 layer=overlay
@@ -18,8 +19,8 @@ default-timeout=7000
 [urgency=critical]
 default-timeout=10000
 background-color=#900000
-border-color=#472f2f
-progress-color=#DC3933
+border-color=#aa2929
+progress-color=#ff5555
 
 [actionable]
 format=(A) <b>%s</b>\n%b\n<small>(%a)</small>
