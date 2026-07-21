@@ -5,4 +5,5 @@ set statusbar-home-tilde true
 set statusbar-home-tilde true
 set window-title-home-tilde true
 set guioptions shv
+set font monospace\ normal\ 12
 set zoom-step 5
