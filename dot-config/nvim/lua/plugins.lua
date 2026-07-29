@@ -48,5 +48,4 @@ vim.pack.add({
 
 -- Local plugins
 vim.cmd.packadd("blackbg.nvim")
-vim.cmd.packadd("lismore.nvim")
 vim.cmd.packadd("buffers.nvim")

@@ -1,1 +1,1 @@
-vim.cmd.colorscheme("lismore")
+vim.cmd.colorscheme("lim")
