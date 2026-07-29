@@ -1,24 +1,16 @@
 {
   "plugins": {
-    "blackbg.nvim": {
-      "rev": "e0717617031498bce97d3613cf6a42908d044d42",
-      "src": "file:///home/kaikacy/dev/nvim-plugins/blackbg.nvim"
-    },
     "blink.cmp": {
       "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "1.0.0 - 2.0.0"
-    },
-    "buffers.nvim": {
-      "rev": "288e5a017f5a42baa2f03593c8d66788b45d4bae",
-      "src": "file:///home/kaikacy/dev/nvim-plugins/buffers.nvim"
     },
     "conform.nvim": {
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "fff.nvim": {
-      "rev": "b14c31d137e108b7c520d0d9e0b0017a1a88141d",
+      "rev": "fde8c52a298a2fa4375edf626e0c37b0400f5a8b",
       "src": "https://github.com/dmtrKovalenko/fff.nvim"
     },
     "guess-indent.nvim": {
@@ -26,19 +18,15 @@
       "src": "https://github.com/nmac427/guess-indent.nvim"
     },
     "mini.nvim": {
-      "rev": "9459d7f41ae77d909579dab0aea2bdd3210fac9f",
+      "rev": "946ae64e0ee807ae3c41f382f0114b4ed4915b2c",
       "src": "https://github.com/nvim-mini/mini.nvim"
-    },
-    "nvim-clops": {
-      "rev": "6cf60895746cef6e06bb662fe9efaf87e05cfe0e",
-      "src": "file:///home/kaikacy/dev/nvim-plugins/nvim-clops"
     },
     "nvim-lint": {
       "rev": "a219b2c9e5b4765e5c845aba119dad55806fcaf1",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "e7ca2c95ba316a8b846d3f3546d407908c5c4ccb",
+      "rev": "d592c1e6ad9a0a01b3d5ed3f0345d68407167181",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-surround": {
@@ -47,7 +35,7 @@
       "version": "4.0.0 - 5.0.0"
     },
     "nvim-treesitter": {
-      "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
+      "rev": "bd41519ff7901da11ba6e1c8f419f17f2d94305a",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
@@ -55,7 +43,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "851e865342e5a4cb1ae23d31caf6e991e1c99f1e",
+      "rev": "898ee307df58f854d11cd7edd06472574d48014e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
     },
     "persistence.nvim": {

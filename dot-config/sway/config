@@ -10,17 +10,16 @@ set $move_amount 30px
 set $term footclient
 set $browser helium-browser
 set $calculator "footclient --app-id=qalc-cli qalc"
-set $menu "rofi -show drun"
+set $menu "fuzzel"
 set $emoji-menu "rofimoji --action copy --prompt emoji"
+set $cliphist-menu fuzzel --dmenu --width=100 --tabs=4
 set $font "pango:monospace"
 set $wallpaper "~/Pictures/wallpapers/default"
-set $bg_color "#0f000f"
 
 
 ### I/O ###
 output * {
-	bg $wallpaper fill
-	# bg $bg_color solid_color
+	bg $wallpaper fill #1b1b1b
 	subpixel vrgb
 	max_render_time 2
 }
@@ -86,8 +85,8 @@ bindsym --to-code $mod+Shift+q kill
 bindsym --to-code $mod+Ctrl+r reload
 bindsym --to-code $mod+m exec ~/.config/sway/scripts/power-menu.sh
 bindsym --to-code $mod+Ctrl+e exec $emoji-menu
-bindsym --to-code $mod+Ctrl+v exec cliphist list | rofi -dmenu -p "clipboard" | cliphist decode | wl-copy
-bindsym --to-code $mod+Shift+v exec cliphist list | rofi -dmenu -p "clipdelete" | cliphist delete
+bindsym --to-code $mod+Ctrl+v exec cliphist list | $cliphist-menu --mesg "Clipboard history" | cliphist decode | wl-copy
+bindsym --to-code $mod+Shift+v exec cliphist list | $cliphist-menu --mesg "Delete clipboard entry" | cliphist delete
 
 mode "launch" {
     bindsym --to-code Return exec $term; mode "default"

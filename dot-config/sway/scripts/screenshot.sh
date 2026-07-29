@@ -13,7 +13,7 @@ readonly SCREEN="Screen"
 readonly WINDOW="Window"
 readonly REGION="Region"
 
-readonly MODE=$(echo "$SCREEN\n$WINDOW\n$REGION" | rofi -dmenu -i -p "Screenshot")
+readonly MODE=$(echo "$SCREEN\n$WINDOW\n$REGION" | fuzzel --dmenu --minimal-lines --mesg "Screenshot")
 
 case "$MODE" in
 	"$SCREEN")
