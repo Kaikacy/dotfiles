@@ -39,7 +39,22 @@ map(
     { silent = true, desc = "Try to align backslash in selection" }
 )
 
+-- Switch between .c and corresponding .h files
 map("n", "<S-Tab>", function()
+    local clangd_avail = #vim.lsp.get_clients({
+        bufnr = 0,
+        name = "clangd",
+        ---@diagnostic disable-next-line: assign-type-mismatch
+        method = "textDocument/switchSourceHeader",
+    }) > 0
+    -- nvim-lspconfig defines "LspClangdSwitchSourceHeader" for clangd config
+    local clangd_cmd = "LspClangdSwitchSourceHeader"
+    if clangd_avail and vim.fn.exists(clangd_cmd) then
+        vim.cmd(clangd_cmd)
+        return
+    end
+
+    -- Dumber method
     local ext = vim.fn.expand("%:e")
     local other_file
     if ext == "c" then
@@ -52,9 +67,10 @@ map("n", "<S-Tab>", function()
     end
     if vim.fn.filereadable(other_file) == 0 then
         vim.notify(
-            ("File '%s' doesn't exist or isn't readable"):format(other_file),
+            ("Corresponding file '%s' is not available"):format(other_file),
             vim.log.levels.WARN
         )
+        return
     end
     vim.cmd("edit " .. other_file)
 end, { desc = "Switch between .c and .h files" })
