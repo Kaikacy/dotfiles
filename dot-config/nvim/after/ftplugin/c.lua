@@ -1,5 +1,10 @@
 local function map(mode, lhs, rhs, opts)
-    vim.keymap.set(mode, lhs, rhs, vim.tbl_extend("force", { buf = 0 }, opts))
+    vim.keymap.set(
+        mode,
+        lhs,
+        rhs,
+        vim.tbl_extend("force", { buf = 0 }, opts or {})
+    )
 end
 
 local ALIGN_BACKSLASH_SUB =
@@ -20,6 +25,7 @@ function _G.My_align_backslash_operator(type)
     vim.cmd(ALIGN_BACKSLASH_RESET)
 end
 
+-- Align backslashes for function-like macros
 map(
     "n",
     "g\\",
@@ -74,3 +80,33 @@ map("n", "<S-Tab>", function()
     end
     vim.cmd("edit " .. other_file)
 end, { desc = "Switch between .c and .h files" })
+
+-- Add include guard
+map("n", "<LEADER>ig", function()
+    vim.ui.input(
+        { prompt = "Include guard name: ", scope = "buffer" },
+        function(name)
+            if not name then return end
+            if name == "" then name = vim.fn.expand("%:t:r") end
+            name = name:upper()
+            if not name:match("_H$") then name = name .. "_H" end
+
+            local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+            local keys = vim.api.nvim_replace_termcodes(
+                ("gg[ kO#ifndef %s<CR>#define %s<ESC>G] jo#endif // %s<ESC>"):format(
+                    name,
+                    name,
+                    name
+                ),
+                true,
+                true,
+                true
+            )
+            vim.api.nvim_feedkeys(keys, "", false)
+            vim.schedule(function()
+                -- +3 for #ifndef, #define and newline
+                vim.api.nvim_win_set_cursor(0, { row + 3, col })
+            end)
+        end
+    )
+end)
