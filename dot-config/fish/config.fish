@@ -5,6 +5,9 @@ set -q XDG_DATA_HOME || set -gx XDG_DATA_HOME "$HOME/.local/share"
 set -q XDG_DATA_DIRS || set -gx XDG_DATA_DIRS "/usr/local/share:/usr/share"
 set -q XDG_CONFIG_DIRS || set -gx XDG_CONFIG_DIRS "/etc/xdg"
 
+# Vulkan video support on intel
+set -gx ANV_DEBUG video-decode,video-encode
+
 fish_add_path --path --prepend "$HOME/.local/bin" "$HOME/.cargo/bin"
 
 ## Colored manpages
