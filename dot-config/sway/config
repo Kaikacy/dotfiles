@@ -46,7 +46,7 @@ input type:keyboard {
 exec /lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec swayidle -w
 exec wl-paste --watch cliphist store
-exec mako
+# exec mako # systemd service
 exec udiskie
 exec ~/.config/sway/scripts/battery-notify.sh
 exec foot --server
@@ -65,7 +65,7 @@ default_floating_border normal 1
 # client.focused_inactive #17384c #09141b #628d98 #17384c #17384c
 # client.urgent #d15123 #d15123 #fee4ce #d15123
 client.focused #000044 #000044 #b3b3b3 #4949d0
-client.unfocused #1b1b1b #1b1b1b #555555 #323232
+client.unfocused #101010 #101010 #555555 #323232
 client.focused_inactive #323232 #323232 #828f97 #555555
 client.urgent #aa2929 #aa2929 #b3b3b3 #ff5555
 
