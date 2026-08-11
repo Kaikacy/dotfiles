@@ -1,0 +1,15 @@
+[mode_floating]
+source=detect
+label_color=#ffff
+label_select_color=#ffee50ff
+unselectable_bg_color=#0000
+selectable_bg_color=#000044aa
+selectable_border_color=#4949d0aa
+label_font_size=12 80% 100
+
+[mode_tile]
+label_color=#ffff
+label_select_color=#ffee50ff
+unselectable_bg_color=#0000
+selectable_bg_color=#00004488
+selectable_border_color=#4949d088
