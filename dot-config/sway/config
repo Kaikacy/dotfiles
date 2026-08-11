@@ -112,7 +112,7 @@ bindsym --to-code $mod+Ctrl+n mode "notification"
 
 bindsym --to-code $mod+grave exec ~/.config/sway/scripts/kb-layout.sh next
 
-bindsym --to-code $mod+g exec wl-kbptr-sway-active-win -o modes=floating\,click
+bindsym --to-code $mod+g exec wl-kbptr-sway-active-win -o modes=floating\,click -o mode_floating.source=detect
 bindsym --to-code $mod+Ctrl+g exec wl-kbptr-sway-active-win -o modes=tile
 
 # focus container
